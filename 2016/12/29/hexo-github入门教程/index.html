@@ -6,17 +6,30 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | sherry的小窝</title>
+  <title>hexo+github入门教程 | sherry的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有点爱折腾的姑娘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="sherry的小窝">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="本文是以Mac为例。
+安装前准备1.node.js安装
+2.git安装 （因为我们最终要把代码提交到github上）
+3.一个github账号
+4.一个与GitHub账号同名的GitHub仓库：xxx.github.io  xxx是GitHub账号名">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo+github入门教程">
+<meta property="og:url" content="http://yoursite.com/2016/12/29/hexo-github入门教程/index.html">
 <meta property="og:site_name" content="sherry的小窝">
-<meta property="og:description" content="有点爱折腾的姑娘">
+<meta property="og:description" content="本文是以Mac为例。
+安装前准备1.node.js安装
+2.git安装 （因为我们最终要把代码提交到github上）
+3.一个github账号
+4.一个与GitHub账号同名的GitHub仓库：xxx.github.io  xxx是GitHub账号名">
+<meta property="og:updated_time" content="2016-12-29T03:25:38.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sherry的小窝">
-<meta name="twitter:description" content="有点爱折腾的姑娘">
+<meta name="twitter:title" content="hexo+github入门教程">
+<meta name="twitter:description" content="本文是以Mac为例。
+安装前准备1.node.js安装
+2.git安装 （因为我们最终要把代码提交到github上）
+3.一个github账号
+4.一个与GitHub账号同名的GitHub仓库：xxx.github.io  xxx是GitHub账号名">
   
     <link rel="alternative" href="/atom.xml" title="sherry的小窝" type="application/atom+xml">
   
@@ -148,76 +161,189 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-hexo-github入门教程" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      hexo+github入门教程
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/29/hexo-github入门教程/" class="archive-article-date">
+
+        <a href="/2016/12/29/hexo-github入门教程/" class="archive-article-date">
   	<time datetime="2016-12-29T03:00:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/29/hexo-github入门教程/">hexo+github入门教程</a>
-    </h1>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文是以Mac为例。</p>
+<h2 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a>安装前准备</h2><p>1.node.js安装</p>
+<p>2.git安装 （因为我们最终要把代码提交到github上）</p>
+<p>3.一个github账号</p>
+<p>4.一个与GitHub账号同名的GitHub仓库：xxx.github.io  xxx是GitHub账号名</p>
+<a id="more"></a>
+<h2 id="安装预览"><a href="#安装预览" class="headerlink" title="安装预览"></a>安装预览</h2><p>安装过程遇到问题，可以先往下面看<code>坑</code>，有没有解决你的疑问。</p>
+<p>1.新建一个文件夹，用来放博客的相关文件，相当于博客的根目录，例如：／blog</p>
+<p>2.进入blog文件夹：cd ~/blog  </p>
+<p>3.全局安装hexo：sudo npm install -g hexo  </p>
+<p>4.初始化hexo：hexo init   </p>
+<p>5.生成静态页面：hexo generate  (简写：hexo g) [遇到问题，看下面的坑]</p>
+<p>6.启动本地服务：hexo server(简写：hexo s) </p>
+<p>7.预览：浏览器输入：<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> [不能显示，看下面的坑]</p>
+<p>到这里，就已经安装完成了。</p>
+<h2 id="部署到github"><a href="#部署到github" class="headerlink" title="部署到github"></a>部署到github</h2><p>1.指定要提交的github仓库的地址：打开blog目录下的_config.yml，找到最下面的deploy设置，改成：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="attr">deploy:</span></div><div class="line"><span class="attr">  type:</span> git</div><div class="line"><span class="attr">  repo:</span> git@github.com:wslicknet/wslicknet.github.io.git</div><div class="line"><span class="attr">  branch:</span> master</div></pre></td></tr></table></figure>
+<p>type: 与git中间有一个空格，这是YAML的语法，<strong>必须有一个空格</strong>，否则会出错。</p>
+<p>repo：的值是GitHub仓库地址，可以用https协议，也可以用ssh协议。</p>
+<p>2.安装hexo-deployer-git : npm install hexo-deployer-git –save</p>
+<p>3.将本地hexo文件部署到GitHub：hexo deploy  (简写：hexo d)</p>
+<p>4.在浏览器中输入：<a href="http://wslicknet.github.io/" target="_blank" rel="external">http://wslicknet.github.io/</a>. 查看。 wslicknet是你自己的GitHub账户名。</p>
+<h2 id="更改主题"><a href="#更改主题" class="headerlink" title="更改主题"></a>更改主题</h2><p>1.hexo主题列表：<a href="https://github.com/hexojs/hexo/wiki/Themes" target="_blank" rel="external">https://github.com/hexojs/hexo/wiki/Themes</a> </p>
+<p>2.选择自己喜欢的主题：<code>$ git clone &lt;repository&gt; themes/&lt;theme-name&gt;</code>一般github上每个主题都有安装和使用说明。clone后的主题文件在<code>blog/themes/</code> 文件夹下.</p>
+<p>3.更改blog/_config.yml文件中的theme值，例如：theme: yilia</p>
+<p>4.除了更改主题，还可以更改#site中的值，你自己网站的title subtitle author email 等都可以更改。</p>
+<p>5.和主题相关的配置，一般是在每个主题的配置文件中，例如：blog/theme/yilia/_config.yml   可根据需要修改。</p>
+<p>更改完配置后，依然是<code>hexo g</code>     <code>hexo d</code> </p>
+<h2 id="新建文章"><a href="#新建文章" class="headerlink" title="新建文章"></a>新建文章</h2><p>1.直接在blog/source/_posts目录下新建md文件即可。</p>
+<h2 id="坑"><a href="#坑" class="headerlink" title="坑"></a>坑</h2><p>1.部分操作需要root权限，如果遇到因为权限被拒绝的错误，请用sudo命令试下。</p>
+<p>2.<code>hexo g</code>   <code>hexo d</code>  等执行hexo命令，报错：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Error: Cannot find module &apos;./build/Release/DTraceProviderBindings&apos;</div></pre></td></tr></table></figure>
+<p>可忽略，hexo并没有用到这个功能，如果强迫症，可以自行百度解决方法。</p>
+<p>3.本地预览时，打不开页面，报错：找不到localhost 。2.6以后的hexo版本，需要手动配置些东西，执行下面3行代码试下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">npm install hexo-renderer-ejs --save</div><div class="line"></div><div class="line">npm install hexo-renderer-stylus --save</div><div class="line"></div><div class="line">npm install hexo-renderer-marked --save</div></pre></td></tr></table></figure>
+<p>执行完后再重复安装步骤的5，6，7.</p>
+<p>4.如果更换主题时，遇到问题，可在GitHub上主题项目的issue里寻找解决方法。一般，你遇到的别人都已经遇到过了。</p>
+<p>会随着使用的深入不断更新～～～</p>
 
-        <div class="article-info info-on-right">
-          
-          
+      
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2016/12/29/hexo-github入门教程/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/27/hello-world/" class="archive-article-date">
-  	<time datetime="2016-12-27T05:44:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/27/hello-world/">Hello World</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-          
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/27/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Hello World</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
-    
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="hexo-github入门教程" data-title="hexo+github入门教程" data-url="http://yoursite.com/2016/12/29/hexo-github入门教程/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"“sherrying”"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -240,8 +366,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
