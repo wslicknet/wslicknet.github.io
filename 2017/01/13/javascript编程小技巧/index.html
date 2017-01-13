@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | sherry的小窝</title>
+  <title>javascript编程小技巧 | sherry的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有点爱折腾的姑娘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="sherry的小窝">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="其实主要是性能小技巧。
+循环优化循环体是执行最多的，所以要确保其被最大限度的优化.123456789101112131415// 提前计算好终止条件，存到局部变量中for(var i=0, j = document.getElementsByTagName(&amp;apos;a&amp;apos;).length; i&amp;lt;l; i++)&amp;#123;    // maybe faster&amp;#125;//推荐">
+<meta property="og:type" content="article">
+<meta property="og:title" content="javascript编程小技巧">
+<meta property="og:url" content="http://yoursite.com/2017/01/13/javascript编程小技巧/index.html">
 <meta property="og:site_name" content="sherry的小窝">
-<meta property="og:description" content="有点爱折腾的姑娘">
+<meta property="og:description" content="其实主要是性能小技巧。
+循环优化循环体是执行最多的，所以要确保其被最大限度的优化.123456789101112131415// 提前计算好终止条件，存到局部变量中for(var i=0, j = document.getElementsByTagName(&amp;apos;a&amp;apos;).length; i&amp;lt;l; i++)&amp;#123;    // maybe faster&amp;#125;//推荐">
+<meta property="og:updated_time" content="2017-01-13T03:49:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sherry的小窝">
-<meta name="twitter:description" content="有点爱折腾的姑娘">
+<meta name="twitter:title" content="javascript编程小技巧">
+<meta name="twitter:description" content="其实主要是性能小技巧。
+循环优化循环体是执行最多的，所以要确保其被最大限度的优化.123456789101112131415// 提前计算好终止条件，存到局部变量中for(var i=0, j = document.getElementsByTagName(&amp;apos;a&amp;apos;).length; i&amp;lt;l; i++)&amp;#123;    // maybe faster&amp;#125;//推荐">
   
     <link rel="alternative" href="/atom.xml" title="sherry的小窝" type="application/atom+xml">
   
@@ -154,36 +158,79 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-javascript编程小技巧" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      javascript编程小技巧
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/13/javascript编程小技巧/" class="archive-article-date">
+
+        <a href="/2017/01/13/javascript编程小技巧/" class="archive-article-date">
   	<time datetime="2017-01-13T03:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-13</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/13/javascript编程小技巧/">javascript编程小技巧</a>
-    </h1>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>其实主要是性能小技巧。</p>
+<h2 id="循环优化"><a href="#循环优化" class="headerlink" title="循环优化"></a>循环优化</h2><p>循环体是执行最多的，所以要确保其被最大限度的优化.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">// 提前计算好终止条件，存到局部变量中</div><div class="line">for(var i=0, j = document.getElementsByTagName(&apos;a&apos;).length; i&lt;l; i++)&#123;</div><div class="line">    // maybe faster</div><div class="line">&#125;</div><div class="line"></div><div class="line">//推荐 while循环的效率要优于for(;;)</div><div class="line">var i=document.getElementsByTagName(&apos;a&apos;).length;</div><div class="line">while(i--)&#123;</div><div class="line">   </div><div class="line">&#125;</div><div class="line"></div><div class="line">// 据说是最快的  后测试循环</div><div class="line">do&#123;</div><div class="line">   // maybe fastest</div><div class="line">&#125;while(i--)</div></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<h2 id="避免-for-in-循环"><a href="#避免-for-in-循环" class="headerlink" title="避免 for-in 循环"></a>避免 for-in 循环</h2><p>for(in)的效率极差，因为它需要查询散列键，只要可以，就应该尽量少用<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">//要遍历一个集合内的元素，用for,while,do..while代替</div><div class="line">//这是vue源码中的一段，作者用for(;;)循环代替了for...in</div><div class="line">var keys = Object.keys(obj);</div><div class="line">  for (var i = 0, l = keys.length; i &lt; l; i++) &#123;</div><div class="line">    this.convert(keys[i], obj[keys[i]]);</div><div class="line">  &#125;</div></pre></td></tr></table></figure></p>
+<h2 id="多个类型一起声明"><a href="#多个类型一起声明" class="headerlink" title="多个类型一起声明"></a>多个类型一起声明</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">var option=&apos;option&apos;;</div><div class="line">var event=&apos;event&apos;;</div><div class="line">var method=&apos;method&apos;;</div><div class="line"></div><div class="line">//可替换为 </div><div class="line">var option=&apos;option&apos;,</div><div class="line">    event=&apos;event&apos;,</div><div class="line">    method=&apos;method&apos;;</div></pre></td></tr></table></figure>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">+&apos;010&apos; === 10; //+可以把字符串变成整数</div><div class="line">Number(&apos;010&apos;) === 10;</div><div class="line">parseInt(&apos;010&apos;, 10) === 10;</div><div class="line">10 + &apos;&apos; === &apos;10&apos;;//也可以把整数变成字符串</div><div class="line"></div><div class="line">+new Date() // timestamp</div><div class="line">+new Date;</div></pre></td></tr></table></figure>
+<h2 id="使用三目运算符替代条件分支"><a href="#使用三目运算符替代条件分支" class="headerlink" title="使用三目运算符替代条件分支"></a>使用三目运算符替代条件分支</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">//将条件从最可能到最不可能进行排列,减少探测次数</div><div class="line"> if (a &gt; b) &#123;</div><div class="line">    num = a;</div><div class="line">&#125; else &#123;</div><div class="line">    num = b;</div><div class="line">&#125;</div><div class="line">//可以替换为：</div><div class="line">num = a &gt; b ? a : b;</div></pre></td></tr></table></figure>
+<h2 id="巧用-和-amp-amp-布尔运算符"><a href="#巧用-和-amp-amp-布尔运算符" class="headerlink" title="巧用||和&amp;&amp;布尔运算符"></a>巧用||和&amp;&amp;布尔运算符</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">//源码中这种运算符操作很多，尤其是jQuery源码</div><div class="line">item &amp;&amp; item.$value || item;</div><div class="line">var id = typeof asset === &apos;function&apos; ? asset.options &amp;&amp; asset.options.name || asset.id : asset.name || asset.id;</div></pre></td></tr></table></figure>
+<h2 id="用局部变量代替全局变量"><a href="#用局部变量代替全局变量" class="headerlink" title="用局部变量代替全局变量"></a>用局部变量代替全局变量</h2><p>无论是DOM节点，普通变量，还是对象属性，若需重复使用，通通存成局部变量，避免多次取值的调用开销<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"> //vue源码</div><div class="line">var p = Cache.prototype;</div><div class="line">p.put = function (key, value) &#123;&#125;</div><div class="line"></div><div class="line">//jquery源码</div><div class="line">var deletedIds = [];</div><div class="line">var slice = deletedIds.slice;</div><div class="line">var concat = deletedIds.concat;</div><div class="line">var push = deletedIds.push;</div><div class="line">var indexOf = deletedIds.indexOf;</div></pre></td></tr></table></figure></p>
+<h2 id="DOM节点链式操作"><a href="#DOM节点链式操作" class="headerlink" title="DOM节点链式操作"></a>DOM节点链式操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//链式操作会自动缓存</div><div class="line">$(&apos;.test&apos;).find(&apos;.btn&apos;).css(&apos;backgroundColor&apos;,&apos;#f30&apos;).click();</div></pre></td></tr></table></figure>
+<h2 id="修改CSS类，而不是样式"><a href="#修改CSS类，而不是样式" class="headerlink" title="修改CSS类，而不是样式"></a>修改CSS类，而不是样式</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">尤其是在修改多个样式时，修改css类只会引起一次回流，而修改样式会引起多次回流。</div></pre></td></tr></table></figure>
+<h2 id="插入迭代器"><a href="#插入迭代器" class="headerlink" title="插入迭代器"></a>插入迭代器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var name=values[i]; </div><div class="line">i++;</div><div class="line"></div><div class="line">//替换为</div><div class="line">var name=values[i++]</div></pre></td></tr></table></figure>
+<h2 id="使用字面量"><a href="#使用字面量" class="headerlink" title="使用字面量"></a>使用字面量</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var aTest = new Array(); </div><div class="line">var aTest = new Object; </div><div class="line">var reg = new RegExp(); </div><div class="line">var oFruit = new O;</div><div class="line">oFruit.color = &quot;red&quot;;</div><div class="line">oFruit.name = &quot;apple&quot;;</div><div class="line"></div><div class="line">//分别替换为</div><div class="line">var aTest = []; </div><div class="line">var aTest = &#123;&#125;; </div><div class="line">var reg = /\d/i; //只在有变量时才用new RegExp()</div><div class="line">var oFruit = &#123; color: &quot;red&quot;, name: &quot;apple&quot; &#125;;</div></pre></td></tr></table></figure>
+<h2 id="使用一次innerHTML赋值代替构建dom元素"><a href="#使用一次innerHTML赋值代替构建dom元素" class="headerlink" title="使用一次innerHTML赋值代替构建dom元素"></a>使用一次innerHTML赋值代替构建dom元素</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">var frag = document.createDocumentFragment();</div><div class="line">for (var i = 0; i &lt; 1000; i++) &#123;</div><div class="line">    var el = document.createElement(&apos;p&apos;);</div><div class="line">    el.innerHTML = i;</div><div class="line">    frag.appendChild(el);</div><div class="line">&#125;</div><div class="line">document.body.appendChild(frag);</div><div class="line">//可以替换为：</div><div class="line">var html = [];</div><div class="line">for (var i = 0; i &lt; 1000; i++) &#123;</div><div class="line">    html.push(&apos;&lt;p&gt;&apos; + i + &apos;&lt;/p&gt;&apos;);</div><div class="line">&#125;</div><div class="line">document.body.innerHTML = html.join(&apos;&apos;);</div></pre></td></tr></table></figure>
+<h2 id="尽量使用原生方法"><a href="#尽量使用原生方法" class="headerlink" title="尽量使用原生方法"></a>尽量使用原生方法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var container = document.createElement(&apos;div&apos;);</div><div class="line">container.appendChild(el.cloneNode(true));</div></pre></td></tr></table></figure>
+<h2 id="避免with语句"><a href="#避免with语句" class="headerlink" title="避免with语句"></a>避免with语句</h2><p>with语句会创建自己的作用域，因此会增加其中执行的代码的作用域链的长度，所以能不用的时候就不要用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">with (a.b.c.d) &#123;</div><div class="line">    property1 = 1;</div><div class="line">    property2 = 2;</div><div class="line">&#125;</div><div class="line">//可以替换为：</div><div class="line">var obj = a.b.c.d;</div><div class="line">obj.property1 = 1;</div><div class="line">obj.property2 = 2;</div></pre></td></tr></table></figure></p>
+<p>ps:有些代码性能虽高，但是可能会降低阅读性与可维护性，或者与团队的规范冲突，所以这个需要自己在可读性，团队规范性与代码性能之间权衡。</p>
+<h2 id="感言"><a href="#感言" class="headerlink" title="感言"></a>感言</h2><p>上面罗列的都是我觉得经常会用到的，看一遍，用心记一下，很easy～～可能以后会不定时更新，看自己get到的情况～～</p>
+<p>我也是最近才注意到这些“潜规则”，正巧最近也在看vue的源码，然后就发现:基本上网上能查到的性能优化的方面，或者编程的技巧都能在vue源码中找到佐证。vue源码的代码质量很高，非常值得我等小辈学习。</p>
+<p>上面的技巧，若有任何不对，欢迎指正，也欢迎补充～～</p>
+<p>过段时间一定要写源码阅读笔记（好怕打脸～～逃）</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>能帮到你，我很开心<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oiy2rfrc6.bkt.clouddn.com/wechatsang.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list">
@@ -195,105 +242,104 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/01/13/javascript编程小技巧/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/29/hexo-github入门教程/" class="archive-article-date">
-  	<time datetime="2016-12-29T03:00:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/29/hexo-github入门教程/">hexo+github入门教程</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/27/hello-world/" class="archive-article-date">
-  	<time datetime="2016-12-27T05:44:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/27/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2016/12/29/hexo-github入门教程/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">hexo+github入门教程</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
+</nav>
 
-    
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2017/01/13/javascript编程小技巧/" data-title="javascript编程小技巧" data-url="http://yoursite.com/2017/01/13/javascript编程小技巧/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"sherrying"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -314,8 +360,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
