@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>sherry的小窝</title>
+  <title>Archives: 2017/2 | sherry的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="有点爱折腾的姑娘">
 <meta property="og:type" content="website">
 <meta property="og:title" content="sherry的小窝">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/archives/2017/02/index.html">
 <meta property="og:site_name" content="sherry的小窝">
 <meta property="og:description" content="有点爱折腾的姑娘">
 <meta name="twitter:card" content="summary">
@@ -156,99 +156,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-javascript性能优化技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/07/javascript性能优化技巧/">javascript性能优化技巧</a>
-    </h1>
-  
-
-        <a href="/2017/02/07/javascript性能优化技巧/" class="archive-article-date">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/02/07/javascript性能优化技巧/" class="archive-article-date">
   	<time datetime="2017-02-07T05:38:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
 </a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>春节在家，把《高性能的JavaScript》刷了一遍，受益匪浅。本着每看完一本书都要做读书笔记的习惯，将书中的知识点总结一下。</p>
-<blockquote>
-<p>由于不同浏览器使用的JavaScript引擎不同，因此对JavaScript的优化也不尽相同。也因此，有些方法在IE上可能性能相差很大，但在chrome上相差无几，也甚至某些方法在IE上最快，但在chrome上却并不是最优的方案，所以，对性能有极致要求的应用，应考虑你的产品使用者最常用的浏览器。当然，下面提到的优化方法都是通用法则或者对大多数浏览器都友好的方法。</p>
-</blockquote>
-<h1 id="【JavaScript加载和执行】"><a href="#【JavaScript加载和执行】" class="headerlink" title="【JavaScript加载和执行】"></a>【JavaScript加载和执行】</h1><p>JavaScript的下载和执行会阻塞用户界面的绘制和其他资源的下载</p>
-        
-          <a class="article-more-a" href="/2017/02/07/javascript性能优化技巧/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-javascript编程小技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/13/javascript编程小技巧/">javascript编程小技巧</a>
+      <a class="archive-article-title" href="/2017/02/07/javascript性能优化技巧/">javascript性能优化技巧</a>
     </h1>
   
 
-        <a href="/2017/01/13/javascript编程小技巧/" class="archive-article-date">
-  	<time datetime="2017-01-13T03:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-13</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>其实主要是性能小技巧。</p>
-<h2 id="循环优化"><a href="#循环优化" class="headerlink" title="循环优化"></a>循环优化</h2><p>循环体是执行最多的，所以要确保其被最大限度的优化.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 提前计算好终止条件，存到局部变量中</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>, j = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'a'</span>).length; i&lt;l; i++)&#123;</div><div class="line">    <span class="comment">// maybe faster</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//推荐 while循环的效率要优于for(;;)</span></div><div class="line"><span class="keyword">var</span> i=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'a'</span>).length;</div><div class="line"><span class="keyword">while</span>(i--)&#123;</div><div class="line">   </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 据说是最快的  后测试循环</span></div><div class="line"><span class="keyword">do</span>&#123;</div><div class="line">   <span class="comment">// maybe fastest</span></div><div class="line">&#125;<span class="keyword">while</span>(i--)</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/01/13/javascript编程小技巧/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list">
@@ -260,147 +195,19 @@
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-
-
-
-
-
-
   
-    <article id="post-hexo-github入门教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/hexo-github入门教程/">hexo+github入门教程</a>
-    </h1>
-  
-
-        <a href="/2016/12/29/hexo-github入门教程/" class="archive-article-date">
-  	<time datetime="2016-12-29T03:00:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文是以Mac为例。入门级教程，适合小白～～</p>
-<h2 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a>安装前准备</h2><p>1.node.js安装</p>
-<p>2.git安装 （因为我们最终要把代码提交到github上）</p>
-<p>3.一个github账号</p>
-<p>4.一个与GitHub账号同名的GitHub仓库：xxx.github.io  xxx是GitHub账号名</p>
-        
-          <a class="article-more-a" href="/2016/12/29/hexo-github入门教程/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/27/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <a href="/2016/12/27/hello-world/" class="archive-article-date">
-  	<time datetime="2016-12-27T05:44:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-27</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p>
-        
-          <a class="article-more-a" href="/2016/12/27/hello-world/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
 
 
           </div>
@@ -420,9 +227,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
