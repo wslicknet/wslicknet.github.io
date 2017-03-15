@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | sherry的小窝</title>
+  <title>project-copy——一个node模块的开发及发布 | sherry的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有点爱折腾的姑娘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="sherry的小窝">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="webpack,gulp,mvvm的开发模式，使得大家的项目结构从原本的html、css、js这种分资源存放的方式，变成了以项目为单元的结构。很多时候，项目之间又是相似的，所以，开始一个新项目时，大家应该都是copy一个类似的项目，然后再做重命名的修改吧？反正我是的。为了让这个copy的过程更优雅，就自己写了个简单的copy命令，喜欢优(zhuang)雅(bi)的朋友可以npm install -">
+<meta property="og:type" content="article">
+<meta property="og:title" content="project-copy——一个node模块的开发及发布">
+<meta property="og:url" content="http://yoursite.com/2017/03/15/project-copy——一个node模块的开发及发布/index.html">
 <meta property="og:site_name" content="sherry的小窝">
-<meta property="og:description" content="有点爱折腾的姑娘">
+<meta property="og:description" content="webpack,gulp,mvvm的开发模式，使得大家的项目结构从原本的html、css、js这种分资源存放的方式，变成了以项目为单元的结构。很多时候，项目之间又是相似的，所以，开始一个新项目时，大家应该都是copy一个类似的项目，然后再做重命名的修改吧？反正我是的。为了让这个copy的过程更优雅，就自己写了个简单的copy命令，喜欢优(zhuang)雅(bi)的朋友可以npm install -">
+<meta property="og:updated_time" content="2017-03-15T13:59:50.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sherry的小窝">
-<meta name="twitter:description" content="有点爱折腾的姑娘">
+<meta name="twitter:title" content="project-copy——一个node模块的开发及发布">
+<meta name="twitter:description" content="webpack,gulp,mvvm的开发模式，使得大家的项目结构从原本的html、css、js这种分资源存放的方式，变成了以项目为单元的结构。很多时候，项目之间又是相似的，所以，开始一个新项目时，大家应该都是copy一个类似的项目，然后再做重命名的修改吧？反正我是的。为了让这个copy的过程更优雅，就自己写了个简单的copy命令，喜欢优(zhuang)雅(bi)的朋友可以npm install -">
   
     <link rel="alternative" href="/atom.xml" title="sherry的小窝" type="application/atom+xml">
   
@@ -154,36 +155,88 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-project-copy——一个node模块的开发及发布" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      project-copy——一个node模块的开发及发布
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/15/project-copy——一个node模块的开发及发布/" class="archive-article-date">
+
+        <a href="/2017/03/15/project-copy——一个node模块的开发及发布/" class="archive-article-date">
   	<time datetime="2017-03-15T13:52:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/15/project-copy——一个node模块的开发及发布/">project-copy——一个node模块的开发及发布</a>
-    </h1>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>webpack,gulp,mvvm的开发模式，使得大家的项目结构从原本的html、css、js这种分资源存放的方式，变成了以项目为单元的结构。很多时候，项目之间又是相似的，所以，开始一个新项目时，大家应该都是copy一个类似的项目，然后再做重命名的修改吧？反正我是的。为了让这个copy的过程更优雅，就自己写了个简单的copy命令，喜欢优(zhuang)雅(bi)的朋友可以<code>npm install -g project-copy</code>试一下。</p>
+<h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>通过copy你的旧项目，快速而优雅的创建一个新项目。可支持copy目录或文件。</p>
+<a id="more"></a>
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm install -g project-copy  //安装此项目</div><div class="line">new --src=project_old  --dest=project_new  //在终端中输入命令创建新项目/文件</div></pre></td></tr></table></figure>
+<p>其中<code>project_old</code>  <code>project_new</code>既可以是目录，也可以是文件。 项目源码可以查看<a href="https://github.com/wslicknet/project-copy" target="_blank" rel="external">这里</a>。欢迎star。</p>
+<p>项目很简单，我主要是想记录下自定义命令行和发布Node模块的过程。</p>
+<h3 id="创建模块"><a href="#创建模块" class="headerlink" title="创建模块"></a>创建模块</h3><ol>
+<li>首先新建一个你的项目目录，进入此目录，<code>npm init</code>初始化package.json文件，根据提示填写即可。填错也没关系，因为你可以随意修改生成后的package.json文件。</li>
+<li>写你的项目。我这个<code>project-copy</code>很简单，就一个new.js就搞定了。</li>
+<li>在package.json中添加bin命令，例如：可以在源码中查看我的package.json。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;bin&quot;: &#123;</div><div class="line">    &quot;new&quot;: &quot;./new.js&quot;  </div><div class="line">  &#125;,</div></pre></td></tr></table></figure>
+<p>bin中的key就是你自定义的命令，value是执行此命令的文件。</p>
+<ol>
+<li><code>npm install -g</code> 在你本机安装自己的项目，这样才能使用刚才自定义的命令。每次对项目做修改后，都要执行此命令重新安装，这样修改才能生效。</li>
+<li>第四步的每次修改都需要安装是不是太不可思议了？那就试下<code>npm link</code>。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd ~/projects/project-copy   //进入project-copy模块目录</div><div class="line">npm link //把project-copy模块链接到全局模式</div></pre></td></tr></table></figure>
+<p>这样，/usr/local/lib/node_modules/project-copy 便会链接到 ~/projects/project-copy下。你当前项目的任何更改都可以反映到全局。 至此，模块已编写完毕，准备发布。</p>
+<h3 id="发布模块"><a href="#发布模块" class="headerlink" title="发布模块"></a>发布模块</h3><ol>
+<li><p>首先最好有一个GitHub账号，且将模块源码托管到github，便于大家提issue</p>
+</li>
+<li><p>然后在npm上注册一个账号。</p>
+</li>
+<li><p>命令行登录npm：npm login</p>
+</li>
+<li><p>命令行发布：npm publish</p>
+<p>然后就可以在npm官网中搜到你的模块啦，可以查看模块的下载量和大家提的issues<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">### 版本号</div><div class="line"></div><div class="line">npm社区版本号规则采用的是[semver](http://semver.org/)(语义化版本)，主要规则如下：</div><div class="line"></div><div class="line">```</div><div class="line">语义版本号分为X.Y.Z三位，分别代表主版本号、次版本号和补丁版本号。当代码变更时，版本号按以下原则更新。</div><div class="line">如果只是修复bug，需要更新Z位。</div><div class="line">如果是新增了功能，但是向下兼容，需要更新Y位。</div><div class="line">如果有大变动，向下不兼容，需要更新X位。</div><div class="line">```</div><div class="line"></div><div class="line">### 常用npm命令</div><div class="line"></div><div class="line">```</div><div class="line">取消发布：npm unpublish</div><div class="line">退出登录：npm logout</div><div class="line">卸载模块：npm uninstall xxx</div><div class="line">更新模块: npm update xxx</div><div class="line">```</div><div class="line"></div><div class="line">完</div></pre></td></tr></table></figure></p>
+</li>
+</ol>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>能帮到你，我很开心<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oiy2rfrc6.bkt.clouddn.com/wechatsang.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list">
@@ -195,143 +248,104 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/15/project-copy——一个node模块的开发及发布/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/07/javascript性能优化技巧/" class="archive-article-date">
-  	<time datetime="2017-02-07T05:38:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/07/javascript性能优化技巧/">javascript性能优化技巧</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/13/javascript编程小技巧/" class="archive-article-date">
-  	<time datetime="2017-01-13T03:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/13/javascript编程小技巧/">javascript编程小技巧</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/29/hexo-github入门教程/" class="archive-article-date">
-  	<time datetime="2016-12-29T03:00:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/29/hexo-github入门教程/">hexo+github入门教程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/02/07/javascript性能优化技巧/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">javascript性能优化技巧</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
+</nav>
 
-    
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2017/03/15/project-copy——一个node模块的开发及发布/" data-title="project-copy——一个node模块的开发及发布" data-url="http://yoursite.com/2017/03/15/project-copy——一个node模块的开发及发布/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"sherrying"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -352,8 +366,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
