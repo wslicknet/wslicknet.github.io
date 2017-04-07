@@ -14,7 +14,7 @@
 <meta property="og:url" content="http://yoursite.com/2017/04/07/我希望这是我写过的最差的代码/index.html">
 <meta property="og:site_name" content="sherry的小窝">
 <meta property="og:description" content="前端时间写了个自己觉得很差的代码，当然写之前我是没想到我会写的那么烂，但是写着写着，就觉得要歪楼了，写到最后，就真的觉得这代码只有我自己能看的懂～～忧伤~~这里记录总结一下">
-<meta property="og:updated_time" content="2017-04-07T13:45:30.000Z">
+<meta property="og:updated_time" content="2017-04-07T14:17:06.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我希望这是我写过的最差的代码">
 <meta name="twitter:description" content="前端时间写了个自己觉得很差的代码，当然写之前我是没想到我会写的那么烂，但是写着写着，就觉得要歪楼了，写到最后，就真的觉得这代码只有我自己能看的懂～～忧伤~~这里记录总结一下">
@@ -190,10 +190,13 @@
 <p>4.函数一定要解耦，要抽离。切记</p>
 <p>5.性能小技巧   高质量代码   奇淫技巧之类的</p>
 <h3 id="可优化空间"><a href="#可优化空间" class="headerlink" title="可优化空间"></a>可优化空间</h3><p>1.应该利用模块模式，将业务相似可复用的部分抽离成单独的模块，view抽离成页面片，js抽离出模块，只export必要的函数，其他模块require即可。好处：可复用、清晰、不污染全局作用域。迭代时采用了这种模式，确实很方便，很好用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//module.js</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Module</span>(<span class="params">option</span>)</span>&#123;</div><div class="line">  <span class="comment">//合并实参和默认设置对象</span></div><div class="line">  <span class="keyword">this</span>.option=$.extend(&#123;&#125;,Module.default,option);</div><div class="line">  <span class="comment">//需要用到的属性</span></div><div class="line">  <span class="keyword">this</span>.attrA=xx;</div><div class="line">  <span class="comment">//需要初始化的方法</span></div><div class="line">  <span class="keyword">this</span>.methodA();</div><div class="line">  <span class="keyword">this</span>.methodB();</div><div class="line">&#125;</div><div class="line"><span class="comment">//重写原型对象</span></div><div class="line">Module.prototype=&#123;</div><div class="line">  <span class="attr">methodA</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,</div><div class="line">  <span class="attr">methodB</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,</div><div class="line">&#125;</div><div class="line"><span class="comment">//暴露init方法,利用export暴露你想暴露的方法</span></div><div class="line">exports.init=<span class="function"><span class="keyword">function</span>(<span class="params">option</span>)</span>&#123;</div><div class="line">  <span class="keyword">return</span> <span class="keyword">new</span> Module(option);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//调用</span></div><div class="line"><span class="built_in">require</span>(<span class="string">'module'</span>).init(&#123;...&#125;);</div></pre></td></tr></table></figure>
 <p>2.如果可以用vue，如果重来，我一定选择用vue开发。</p>
 <p>3.如果出于兼容性考虑，不能用vue，那可以利用vue的思想。尤其对于增删改查，手动维护一个对象或数组，再手写一个将数据渲染成HTML的函数。每次操作只改变数据，最后再调用渲染函数渲染。用这种方式代替频繁的DOM绑定、获取、修改。好处：处理过程很清晰且bug率低。</p>
 <p>4.分工合作的，一定要及时沟通，避免重复不必要的劳动。可复用的模块抽离，不仅仅是自己做的部分，应该从整个项目上进行考虑。</p>
 <p>5.业务组件的思想没形成。总以为只有modal、datetimepicker,select2这种才叫组件，其实建立在这些组件之上的，业务逻辑相同的部分，也可以抽离成业务组件。业务组件的通用性没有那么高，大多是自己本次业务出现2次或多次时抽离出来的。但是这样的代码布局很清晰，可复用，应该抽离复用。</p>
+<h3 id="留一个功课吧"><a href="#留一个功课吧" class="headerlink" title="留一个功课吧"></a>留一个功课吧</h3><p>mock server模拟数据</p>
+<p>Ps:先这样吧，后续有新的体会或有更好的方法再更新~~</p>
 
       
 
