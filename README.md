@@ -8,5 +8,7 @@
 
 [hexo+github入门教程](https://wslicknet.github.io/2016/12/29/hexo-github%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B/)
 
+[我希望这是我写过的最差的代码]()
+
 
 
