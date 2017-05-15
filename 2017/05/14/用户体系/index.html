@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>sherry的小窝</title>
+  <title>用户体系 | sherry的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有点爱折腾的姑娘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="sherry的小窝">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="用户体系在电商中必不可少。为了更好的维系用户，方便系统服务开发，都会设计用户体系。下面主要是结合我们自己公司的用户体系，记录下自己对用户体系的一些理解。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用户体系">
+<meta property="og:url" content="http://yoursite.com/2017/05/14/用户体系/index.html">
 <meta property="og:site_name" content="sherry的小窝">
-<meta property="og:description" content="有点爱折腾的姑娘">
+<meta property="og:description" content="用户体系在电商中必不可少。为了更好的维系用户，方便系统服务开发，都会设计用户体系。下面主要是结合我们自己公司的用户体系，记录下自己对用户体系的一些理解。">
+<meta property="og:updated_time" content="2017-05-14T03:17:53.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sherry的小窝">
-<meta name="twitter:description" content="有点爱折腾的姑娘">
+<meta name="twitter:title" content="用户体系">
+<meta name="twitter:description" content="用户体系在电商中必不可少。为了更好的维系用户，方便系统服务开发，都会设计用户体系。下面主要是结合我们自己公司的用户体系，记录下自己对用户体系的一些理解。">
   
     <link rel="alternative" href="/atom.xml" title="sherry的小窝" type="application/atom+xml">
   
@@ -154,16 +155,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-用户体系" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-用户体系" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/14/用户体系/">用户体系</a>
+    <h1 class="article-title" itemprop="name">
+      用户体系
     </h1>
   
 
@@ -175,72 +174,47 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>用户体系在电商中必不可少。为了更好的维系用户，方便系统服务开发，都会设计用户体系。下面主要是结合我们自己公司的用户体系，记录下自己对用户体系的一些理解。</p>
-        
-          <a class="article-more-a" href="/2017/05/14/用户体系/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
+<a id="more"></a>
+<p>一个uid对应一个第三方账号ID，一个用户可以有多个uid ，但只有一个uin，通过绑定手机号，将uid绑定到uin上，订单、积分、礼包都是在uin维度上的，会员就是uin的概念。</p>
+<h4 id="什么是uid？为什么要做uid？"><a href="#什么是uid？为什么要做uid？" class="headerlink" title="什么是uid？为什么要做uid？"></a>什么是uid？为什么要做uid？</h4><p>用户通过第三方登录时，会有一个第三方的账号ID，每个账号ID就对应一个uid。所以uid是账号ID。  </p>
+<p>各个平台的账号ID不一致，为了标准化，方便自己的业务调用，因此每个账号ID，都用我们自己的uid统一一下。</p>
+<h4 id="什么是uin？为什么要有uin？"><a href="#什么是uin？为什么要有uin？" class="headerlink" title="什么是uin？为什么要有uin？"></a>什么是uin？为什么要有uin？</h4><p>uin是标识唯一自然人的。我们可以用身份证号、手机号、指纹、虹膜等能唯一区分自然人的信息来标识一个自然人。身份证号，太隐私，重要信息太多，一般用户不愿意泄露。一般用手机号做唯一标识。</p>
+<p>为了打通多个第三方账号，方便用户。</p>
+<h4 id="多个uid怎么绑定到一个uin上？"><a href="#多个uid怎么绑定到一个uin上？" class="headerlink" title="多个uid怎么绑定到一个uin上？"></a>多个uid怎么绑定到一个uin上？</h4><p>当用户注册、登录时，如果用手机号注册，我们就给他生成一个uid，同时生成一个uin，然后将这个uid绑到这个uin上；如果用其他账号注册、登录，就只生成一个uid，然后会提示他绑定手机号，当用户输入手机号后，若是能查到这个手机号，那这个用户就有uin，直接将现在的uid绑定到uin上即可；如果查不到uin，则重新生成一个uin，再将uid绑定到uin上。</p>
+<p>注：这里的手机号就代指 【用户唯一标识】，可用作唯一标识的不仅仅是手机号。例如：指纹、身份证等。</p>
+<h4 id="账号会记录什么信息？信息的密度和粒度？"><a href="#账号会记录什么信息？信息的密度和粒度？" class="headerlink" title="账号会记录什么信息？信息的密度和粒度？"></a>账号会记录什么信息？信息的密度和粒度？</h4><p>uid,uin,平台类型，平台账号ID，用户凭证及其他用户信息。信息的密度和粒度，这个根据业务决定。业务需要的权限，业务需要的信息。</p>
+<h4 id="第三方对接的时候的问题？"><a href="#第三方对接的时候的问题？" class="headerlink" title="第三方对接的时候的问题？"></a>第三方对接的时候的问题？</h4><p>一般第三方不会直接泄露用户密码，而是通过处理，给一个用户凭证。我们根据这个用户凭证再去获取用户信息。例如：微信。我们要首先引导用户同意授权，获取code，然后通过code、appid、secret换取网页授权access_token（用户凭证），最后才能用access_token拉取用户信息。</p>
+<h4 id="为什么要有sessionkey"><a href="#为什么要有sessionkey" class="headerlink" title="为什么要有sessionkey?"></a>为什么要有sessionkey?</h4><p>网络传输过程不安全，频繁用账号、密码传输，会增大密码被泄漏的几率。所以，我们只在第一次登陆的时候，需要账号密码，然后生成一个sessionkey,之后的一段时间内，就用sessionkey验证身份。sessionkey的设计方式有很多。简单的就直接用账号、密码、机器码、随机数等加密。</p>
+<h4 id="验证码，邮箱，扫二维码这些方式是为了什么？"><a href="#验证码，邮箱，扫二维码这些方式是为了什么？" class="headerlink" title="验证码，邮箱，扫二维码这些方式是为了什么？"></a>验证码，邮箱，扫二维码这些方式是为了什么？</h4><p>这些是为了证明你是这个账号的注册者。我们暂且相信手机是在你手里的，邮箱也是只有你自己知道的。</p>
 
       
 
       
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-官网首页要点及技术总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/21/官网首页要点及技术总结/">官网首页要点及技术总结</a>
-    </h1>
-  
-
-        <a href="/2017/04/21/官网首页要点及技术总结/" class="archive-article-date">
-  	<time datetime="2017-04-21T14:19:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-21</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在负责小天鹅官方商城的首页开发，目前已基本完成。这里，把官网首页开发的要点罗列、梳理一下，也对用到的技术方案做个整理、对比。罗列顺序不分先后，想到什么就写了什么。</p>
-        
-          <a class="article-more-a" href="/2017/04/21/官网首页要点及技术总结/#more">展开全文 >></a>
-        
-      
-
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>能帮到你，我很开心<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oiy2rfrc6.bkt.clouddn.com/wechatsang.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -265,336 +239,99 @@
       
 
       
-      <div class="clearfix"></div>
-    </div>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
   </div>
-</article>
+</div>
 
-
-
-
-
-
-
-
-  
-    <article id="post-我希望这是我写过的最差的代码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/07/我希望这是我写过的最差的代码/">我希望这是我写过的最差的代码</a>
-    </h1>
-  
-
-        <a href="/2017/04/07/我希望这是我写过的最差的代码/" class="archive-article-date">
-  	<time datetime="2017-04-07T12:06:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-07</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前端时间写了个自己觉得很差的代码，当然写之前我是没想到我会写的那么烂，但是写着写着，就觉得要歪楼了，写到最后，就真的觉得这代码只有我自己能看的懂～～忧伤~~这里记录总结一下</p>
-        
-          <a class="article-more-a" href="/2017/04/07/我希望这是我写过的最差的代码/#more">展开全文 >></a>
-        
-      
-
-      
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/05/14/用户体系/" alt="微信分享二维码">
     </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
+</div>
 
-      
-
-      
-
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
-
-
-
   
-    <article id="post-project-copy——一个node模块的开发及发布" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/15/project-copy——一个node模块的开发及发布/">project-copy——一个node模块的开发及发布</a>
-    </h1>
-  
-
-        <a href="/2017/03/15/project-copy——一个node模块的开发及发布/" class="archive-article-date">
-  	<time datetime="2017-03-15T13:52:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>webpack,gulp,mvvm的开发模式，使得大家的项目结构从原本的html、css、js这种分资源存放的方式，变成了以项目为单元的结构。很多时候，项目之间又是相似的，所以，开始一个新项目时，大家应该都是copy一个类似的项目，然后再做重命名的修改吧？反正我是的。为了让这个copy的过程更优雅，就自己写了个简单的copy命令，喜欢优(zhuang)雅(bi)的朋友可以<code>npm install -g project-copy</code>试一下。</p>
-<h3 id="项目作用"><a href="#项目作用" class="headerlink" title="项目作用"></a>项目作用</h3><p>通过copy你的旧项目，快速而优雅的创建一个新项目。可支持copy目录或文件。</p>
-        
-          <a class="article-more-a" href="/2017/03/15/project-copy——一个node模块的开发及发布/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-javascript性能优化技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/07/javascript性能优化技巧/">javascript性能优化技巧</a>
-    </h1>
-  
-
-        <a href="/2017/02/07/javascript性能优化技巧/" class="archive-article-date">
-  	<time datetime="2017-02-07T05:38:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>春节在家，把《高性能的JavaScript》刷了一遍，受益匪浅。本着每看完一本书都要做读书笔记的习惯，将书中的知识点总结一下。</p>
-<blockquote>
-<p>由于不同浏览器使用的JavaScript引擎不同，因此对JavaScript的优化也不尽相同。也因此，有些方法在IE上可能性能相差很大，但在chrome上相差无几，也甚至某些方法在IE上最快，但在chrome上却并不是最优的方案，所以，对性能有极致要求的应用，应考虑你的产品使用者最常用的浏览器。当然，下面提到的优化方法都是通用法则或者对大多数浏览器都友好的方法。</p>
-</blockquote>
-<h1 id="【JavaScript加载和执行】"><a href="#【JavaScript加载和执行】" class="headerlink" title="【JavaScript加载和执行】"></a>【JavaScript加载和执行】</h1><p>JavaScript的下载和执行会阻塞用户界面的绘制和其他资源的下载</p>
-        
-          <a class="article-more-a" href="/2017/02/07/javascript性能优化技巧/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-javascript编程小技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/13/javascript编程小技巧/">javascript编程小技巧</a>
-    </h1>
-  
-
-        <a href="/2017/01/13/javascript编程小技巧/" class="archive-article-date">
-  	<time datetime="2017-01-13T03:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-13</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>其实主要是性能小技巧。</p>
-<h2 id="循环优化"><a href="#循环优化" class="headerlink" title="循环优化"></a>循环优化</h2><p>循环体是执行最多的，所以要确保其被最大限度的优化.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 提前计算好终止条件，存到局部变量中</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>, j = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'a'</span>).length; i&lt;l; i++)&#123;</div><div class="line">    <span class="comment">// maybe faster</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//推荐 while循环的效率要优于for(;;)</span></div><div class="line"><span class="keyword">var</span> i=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'a'</span>).length;</div><div class="line"><span class="keyword">while</span>(i--)&#123;</div><div class="line">   </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 据说是最快的  后测试循环</span></div><div class="line"><span class="keyword">do</span>&#123;</div><div class="line">   <span class="comment">// maybe fastest</span></div><div class="line">&#125;<span class="keyword">while</span>(i--)</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/01/13/javascript编程小技巧/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-hexo-github入门教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/hexo-github入门教程/">hexo+github入门教程</a>
-    </h1>
-  
-
-        <a href="/2016/12/29/hexo-github入门教程/" class="archive-article-date">
-  	<time datetime="2016-12-29T03:00:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文是以Mac为例。入门级教程，适合小白～～</p>
-<h2 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a>安装前准备</h2><p>1.node.js安装</p>
-<p>2.git安装 （因为我们最终要把代码提交到github上）</p>
-<p>3.一个github账号</p>
-<p>4.一个与GitHub账号同名的GitHub仓库：xxx.github.io  xxx是GitHub账号名</p>
-        
-          <a class="article-more-a" href="/2016/12/29/hexo-github入门教程/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
+<nav id="article-nav">
   
   
+    <a href="/2017/04/21/官网首页要点及技术总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">官网首页要点及技术总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2017/05/14/用户体系/" data-title="用户体系" data-url="http://yoursite.com/2017/05/14/用户体系/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"sherrying"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -620,8 +357,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

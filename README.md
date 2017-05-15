@@ -1,5 +1,7 @@
 博客文章列表：
 
+[官网首页要点及技术总结]
+
 [我希望这是我写过的最差的代码](https://wslicknet.github.io/2017/04/07/我希望这是我写过的最差的代码/)
 
 [project-copy——一个node模块的开发及发布](https://wslicknet.github.io/2017/03/15/project-copy%E2%80%94%E2%80%94%E4%B8%80%E4%B8%AAnode%E6%A8%A1%E5%9D%97%E7%9A%84%E5%BC%80%E5%8F%91%E5%8F%8A%E5%8F%91%E5%B8%83/)
