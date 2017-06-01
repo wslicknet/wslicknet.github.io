@@ -6,17 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Archives | sherry的小窝</title>
+  <title>bug集锦 | sherry的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有点爱折腾的姑娘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="sherry的小窝">
-<meta property="og:url" content="http://yoursite.com/archives/index.html">
+  <meta name="description" content="都是自己遇到的坑，记录总结下。每个坑都是一次血泪史，不过爬坑的过程也是收获最大的时候。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bug集锦">
+<meta property="og:url" content="http://yoursite.com/2017/06/01/bug集锦/index.html">
 <meta property="og:site_name" content="sherry的小窝">
-<meta property="og:description" content="有点爱折腾的姑娘">
+<meta property="og:description" content="都是自己遇到的坑，记录总结下。每个坑都是一次血泪史，不过爬坑的过程也是收获最大的时候。">
+<meta property="og:updated_time" content="2017-06-01T14:04:14.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sherry的小窝">
-<meta name="twitter:description" content="有点爱折腾的姑娘">
+<meta name="twitter:title" content="bug集锦">
+<meta name="twitter:description" content="都是自己遇到的坑，记录总结下。每个坑都是一次血泪史，不过爬坑的过程也是收获最大的时候。">
   
     <link rel="alternative" href="/atom.xml" title="sherry的小窝" type="application/atom+xml">
   
@@ -154,36 +155,112 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-bug集锦" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      bug集锦
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/06/01/bug集锦/" class="archive-article-date">
+
+        <a href="/2017/06/01/bug集锦/" class="archive-article-date">
   	<time datetime="2017-06-01T13:53:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/06/01/bug集锦/">bug集锦</a>
-    </h1>
-  
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>都是自己遇到的坑，记录总结下。每个坑都是一次血泪史，不过爬坑的过程也是收获最大的时候。</p>
+<a id="more"></a>
+<h2 id="微信bug集锦"><a href="#微信bug集锦" class="headerlink" title="微信bug集锦"></a>微信bug集锦</h2><ol>
+<li><p>微信预览图片接口的参数：current   urls的值必须带协议名：https或http，不能用”//“，否则微信中无法预览大图。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">wx.previewImage(&#123;</div><div class="line">    <span class="attr">current</span>: <span class="string">''</span>, <span class="comment">// 当前显示图片的链接，必须带https或http,不能用"//"</span></div><div class="line">    urls: [] <span class="comment">// 需要预览的图片链接数组，必须带https或http,不能用"//"</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>微信分享的图片，只能用http。否则分享的小图出不来。</p>
+</li>
+<li>安卓微信客户端，缓存严重，window.location.reload无效。调试的话，最好在iOS下测。必须要刷新的话，更改时间戳或者更改URL名称。</li>
+</ol>
+<h2 id="小程序bug集锦"><a href="#小程序bug集锦" class="headerlink" title="小程序bug集锦"></a>小程序bug集锦</h2><ol>
+<li><p>小程序中变量的生命周期不太懂。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> floorData=[]; </div><div class="line">Page(&#123;</div><div class="line"><span class="attr">onLoad</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">.....</div><div class="line"><span class="comment">//在onload函数中若是不对floorData重新初始化，在用户第二次进入这个小程序页面时，floorData并不为空。</span></div><div class="line">floorData.push(data); </div><div class="line"></div><div class="line"><span class="comment">//改成下面这样，先清空</span></div><div class="line">floorData=[];</div><div class="line">floorData.push(data);  </div><div class="line">&#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>wx.request的method方法为get时，必须全大写，否则，部分安卓机下不发请求。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">request.send(&#123;</div><div class="line">    url: &apos;https://w.midea.com/sinclude/data/promote/&apos;+pageId+&apos;.js?t=&apos;+timeStamp,</div><div class="line">    data: &#123;&#125;,</div><div class="line">    method: &apos;GET&apos;  //必须大写</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+</li>
+<li><p>wx.request的method方法为post时，需要设置头部Contenttype，必须驼峰和全小写的都设置上，某些手机（如小米）并不认识驼峰。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">if(method==&apos;post&apos;)&#123;</div><div class="line">if(!conf.header[&apos;Content-Type&apos;])&#123;</div><div class="line">conf.header[&apos;Content-Type&apos;]=&quot;application/x-www-form-urlencode&quot;;</div><div class="line">&#125;</div><div class="line">conf.header[&apos;content-type&apos;]=conf.header[&apos;Content-Type&apos;];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+<li><p>安卓下，点击模态框确认、取消都执行确认操作的解决方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">wx.showModal(&#123;</div><div class="line"><span class="attr">title</span>:<span class="string">'提示'</span>,</div><div class="line"><span class="attr">content</span>:<span class="string">'确认已收到货？'</span>,</div><div class="line"><span class="attr">success</span>:<span class="function"><span class="keyword">function</span>(<span class="params">res</span>)</span>&#123;</div><div class="line"><span class="keyword">if</span>(res.confirm===<span class="number">1</span> || res.confirm===<span class="literal">true</span> || res.confirm===<span class="string">"true"</span>)&#123;</div><div class="line"><span class="comment">//确认</span></div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>调用navigateTo到一个新页面后，不能马上使用redirectTo到另一个新的页面，需要等一段时间（500ms），才能正确跳转。</p>
+</li>
+<li><p>数字操作，涉及到计算、比较等，最好用parseFloat转换一下。因为在js中数字很容易变成字符串，例如：取表单数据进行比较等。还有浮点数精度问题，最好不要在js中处理计算问题。在PHP中，可以用(string)(number) ,将数字转成字符串，避免精度丢失。</p>
+</li>
+</ol>
+<h2 id="IE8-bug集"><a href="#IE8-bug集" class="headerlink" title="IE8 bug集"></a>IE8 bug集</h2><blockquote>
+<p>ie8的bug只能去网上查，没别的招~~~主要是css和脚本兼容性问题。css的问题居多，脚本的一般都会报错。</p>
+</blockquote>
+<p>优雅降级。css3和HTML5的属性，如果不支持，要有替代方案。</p>
+<p>调试方法：点启动调试，如果脚本有问题，控制台会报错。</p>
+<ol>
+<li><p>全局变量：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span>  confirmReminder = $.mpopup(&#123;<span class="attr">id</span> : <span class="string">'confirmReminder'</span>&#125;); <span class="comment">//一不小心形成的全局变量</span></div><div class="line">     confirmCutReminder = $.mpopup(&#123;<span class="attr">id</span> : <span class="string">'confirmCutReminder'</span>&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p>对象最后一个属性后面的逗号：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">data: &#123;</div><div class="line">        <span class="attr">itemid</span>: <span class="built_in">window</span>.strFiid,</div><div class="line">        <span class="attr">areacode</span> : <span class="built_in">window</span>.addrCode,  <span class="comment">//这个逗号会报错</span></div><div class="line">    &#125;,</div></pre></td></tr></table></figure>
+</li>
+<li><p>IE8没有网络面板，可以用fiddler看网络加载情况。</p>
+</li>
+<li><p>display:inline-block 在IE8中会换行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">display:inline-block;</div><div class="line">*display: inline; <span class="comment">//是为了让块元素排成一行</span></div><div class="line">*zoom:<span class="number">1</span>;<span class="comment">//触发hasLayout，能够支持设置宽、高、line-height等一系列属性</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>console.log IE8不支持，但打开控制台后，就支持了。所以，调试的时候可以加console.log，但发布的时候一定要去掉。</p>
+</li>
+<li>数组的es5新增方法不能用：例如：indexOf  ，但字符串的indexOf是可以用的。</li>
+<li>IE8 float：right会换行，要把float：left的也加上</li>
+<li>IE8的z-index:一旦在IE8中使用了z-index，就要特别留意。留意使用z-index的块元素的父类是否也使用的z-index。如果父元素没有设置同样等值的z-index的话，那么将会有可能被下面的块元素所覆盖。</li>
+<li>当Table中td内容为空时，显示边框的办法: <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">border-collapse:collapse; <span class="comment">//table</span></div><div class="line">empty-cells:show; <span class="comment">//td</span></div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>遇到什么就记了什么。。。以后也会记下去吧</p>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>能帮到你，我很开心<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oiy2rfrc6.bkt.clouddn.com/wechatsang.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list">
@@ -198,316 +275,104 @@
 		</span>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/01/bug集锦/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/05/14/用户体系/" class="archive-article-date">
-  	<time datetime="2017-05-14T02:48:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-14</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/05/14/用户体系/">用户体系</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/21/官网首页要点及技术总结/" class="archive-article-date">
-  	<time datetime="2017-04-21T14:19:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/21/官网首页要点及技术总结/">官网首页要点及技术总结</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/04/07/我希望这是我写过的最差的代码/" class="archive-article-date">
-  	<time datetime="2017-04-07T12:06:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/04/07/我希望这是我写过的最差的代码/">我希望这是我写过的最差的代码</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/15/project-copy——一个node模块的开发及发布/" class="archive-article-date">
-  	<time datetime="2017-03-15T13:52:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/15/project-copy——一个node模块的开发及发布/">project-copy——一个node模块的开发及发布</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/07/javascript性能优化技巧/" class="archive-article-date">
-  	<time datetime="2017-02-07T05:38:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/07/javascript性能优化技巧/">javascript性能优化技巧</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/01/13/javascript编程小技巧/" class="archive-article-date">
-  	<time datetime="2017-01-13T03:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-13</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/01/13/javascript编程小技巧/">javascript编程小技巧</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/29/hexo-github入门教程/" class="archive-article-date">
-  	<time datetime="2016-12-29T03:00:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/29/hexo-github入门教程/">hexo+github入门教程</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2017/05/14/用户体系/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">用户体系</div>
+      <i class="icon-circle-right"></i>
+    </a>
   
+</nav>
 
-    
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2017/06/01/bug集锦/" data-title="bug集锦" data-url="http://yoursite.com/2017/06/01/bug集锦/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"sherrying"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -544,8 +409,8 @@ var _hmt = _hmt || [];
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
