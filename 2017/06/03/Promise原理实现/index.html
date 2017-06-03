@@ -6,17 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>sherry的小窝</title>
+  <title>Promise原理实现 | sherry的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="有点爱折腾的姑娘">
-<meta property="og:type" content="website">
-<meta property="og:title" content="sherry的小窝">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="知其然也要知其所以然。查了些资料，照着实现了下Promise的原理。
+Promise简单总结Promise 对象用于异步计算。一个 Promise 表示一个现在或将来可用，亦或永远不可用的值。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Promise原理实现">
+<meta property="og:url" content="http://yoursite.com/2017/06/03/Promise原理实现/index.html">
 <meta property="og:site_name" content="sherry的小窝">
-<meta property="og:description" content="有点爱折腾的姑娘">
+<meta property="og:description" content="知其然也要知其所以然。查了些资料，照着实现了下Promise的原理。
+Promise简单总结Promise 对象用于异步计算。一个 Promise 表示一个现在或将来可用，亦或永远不可用的值。">
+<meta property="og:updated_time" content="2017-06-03T14:23:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="sherry的小窝">
-<meta name="twitter:description" content="有点爱折腾的姑娘">
+<meta name="twitter:title" content="Promise原理实现">
+<meta name="twitter:description" content="知其然也要知其所以然。查了些资料，照着实现了下Promise的原理。
+Promise简单总结Promise 对象用于异步计算。一个 Promise 表示一个现在或将来可用，亦或永远不可用的值。">
   
     <link rel="alternative" href="/atom.xml" title="sherry的小窝" type="application/atom+xml">
   
@@ -154,16 +158,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-Promise原理实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-Promise原理实现" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/03/Promise原理实现/">Promise原理实现</a>
+    <h1 class="article-title" itemprop="name">
+      Promise原理实现
     </h1>
   
 
@@ -176,72 +178,41 @@
       
         <p>知其然也要知其所以然。查了些资料，照着实现了下Promise的原理。</p>
 <h2 id="Promise简单总结"><a href="#Promise简单总结" class="headerlink" title="Promise简单总结"></a>Promise简单总结</h2><p><strong>Promise </strong>对象用于异步计算。一个 Promise 表示一个<strong>现在</strong>或<strong>将来</strong>可用<strong>，</strong>亦或<strong>永远不</strong>可用的值。</p>
-        
-          <a class="article-more-a" href="/2017/06/03/Promise原理实现/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
+<a id="more"></a>
+<p>Promise对象是一个代理对象，它允许你为异步代码执行结果的成功和失败各绑定一个函数，让异步方法可以像同步方法那样返回值。</p>
+<p><strong>主要原理</strong>：状态机+异步队列。 异步操作完成后，调用内部的resolve、reject函数改变状态，同时执行异步队列中的函数。异步队列中的函数是在调用then、done的时候加入的队列。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> PENDING=<span class="number">0</span>,      <span class="comment">//阻塞中，异步操作未完成</span></div><div class="line">     FULFILLED=<span class="number">1</span>,  <span class="comment">//表示异步操作成功</span></div><div class="line">     REJECTED=<span class="number">2</span>;   <span class="comment">//代表异步操作失败</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">MyPromise</span>(<span class="params">fn</span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> state=PENDING;</div><div class="line">    <span class="keyword">var</span> value=<span class="literal">null</span>;</div><div class="line">    <span class="keyword">var</span> handlers=[];</div><div class="line"></div><div class="line">    <span class="comment">//将状态置为成功的状态，同时执行异步队列中的成功的回调函数</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">fulfill</span>(<span class="params">val</span>) </span>&#123;</div><div class="line">        state=FULFILLED;</div><div class="line">        value=val;</div><div class="line">        handlers.forEach(handle);  <span class="comment">//改变状态后，触发异步队列的执行</span></div><div class="line">        handlers=<span class="literal">null</span>;             <span class="comment">//清空异步队列</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//将状态置为失败的状态，同时执行异步队列中的失败的回调函数</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">reject</span>(<span class="params">val</span>) </span>&#123;</div><div class="line">        state=REJECTED;</div><div class="line">        value=val;</div><div class="line">        handlers.forEach(handle);  <span class="comment">//改变状态后，触发异步队列的执行</span></div><div class="line">        handlers=<span class="literal">null</span>;             <span class="comment">//清空异步队列</span></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//解决promise对象返回的是thenable</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">val</span>) </span>&#123;</div><div class="line">        <span class="keyword">try</span>&#123;</div><div class="line">            <span class="keyword">var</span> then=getThen(val);</div><div class="line">            <span class="keyword">if</span>(then)&#123;</div><div class="line">                doResolve(then.bind(val),resolve,reject);</div><div class="line">                <span class="keyword">return</span>;</div><div class="line">            &#125;</div><div class="line">            fulfill(val);</div><div class="line">        &#125;<span class="keyword">catch</span> (e)&#123;</div><div class="line">            reject(e);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//取val的then函数，没有返回null</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">getThen</span>(<span class="params">val</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span>(val &amp;&amp; (<span class="keyword">typeof</span> val ==<span class="string">'object'</span> || <span class="keyword">typeof</span> val ==<span class="string">'function'</span> ))&#123;</div><div class="line">            <span class="keyword">var</span> then=val.then();</div><div class="line">            <span class="keyword">if</span>(then &amp;&amp; <span class="keyword">typeof</span> then==<span class="string">'function'</span>)&#123;</div><div class="line">                <span class="keyword">return</span> then;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//在fn中，resolve和reject只能调用一次</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">doResolve</span>(<span class="params">fn,resolve,reject</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> done=<span class="literal">false</span>;</div><div class="line">        <span class="keyword">try</span>&#123;</div><div class="line">            fn(<span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span>(done) <span class="keyword">return</span>;</div><div class="line">                done=<span class="literal">true</span>;</div><div class="line">                resolve(val);</div><div class="line">            &#125;,<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span>(done) <span class="keyword">return</span>;</div><div class="line">                done=<span class="literal">true</span>;</div><div class="line">                reject(error);</div><div class="line">            &#125;);</div><div class="line">        &#125;<span class="keyword">catch</span> (e)&#123;</div><div class="line">            <span class="keyword">if</span>(done) <span class="keyword">return</span>;</div><div class="line">            done=<span class="literal">true</span>;</div><div class="line">            reject(e);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//根据当前的状态，操作异步队列:入队列、执行列中的函数</span></div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">handle</span>(<span class="params">handler</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span>(state==PENDING)&#123;</div><div class="line">            handlers.push(handler);</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(state==FULFILLED)&#123;</div><div class="line">            <span class="keyword">if</span>(handler.onFulfilled &amp;&amp; <span class="keyword">typeof</span> handler.onFulfilled==<span class="string">'function'</span>)&#123;</div><div class="line">                handler.onFulfilled(value);</div><div class="line">            &#125;</div><div class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(state==REJECTED)&#123;</div><div class="line">            <span class="keyword">if</span>(handler.onRejected &amp;&amp; <span class="keyword">typeof</span> handler.onRejected==<span class="string">'function'</span>)&#123;</div><div class="line">                handler.onRejected(value);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">//对外暴露的API done与then作用相同，只是done不能链式调用，且onFulfilled，onRejected只能是函数</span></div><div class="line">    <span class="keyword">this</span>.done=<span class="function"><span class="keyword">function</span> (<span class="params">onFulfilled,onRejected</span>) </span>&#123;</div><div class="line">        <span class="comment">//异步操作</span></div><div class="line">        setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">           handle(&#123;</div><div class="line">               <span class="attr">onFulfilled</span>:onFulfilled,</div><div class="line">               <span class="attr">onRejected</span>:onRejected</div><div class="line">           &#125;)</div><div class="line">        &#125;,<span class="number">0</span>)</div><div class="line">    &#125;;</div><div class="line"></div><div class="line">    <span class="comment">//then函数，返回promise对象；根据状态执行对应的函数；参数可以是字符串或函数</span></div><div class="line">    <span class="keyword">this</span>.then=<span class="function"><span class="keyword">function</span> (<span class="params">onFulfilled,onRejected</span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> self=<span class="keyword">this</span>;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">new</span> MyPromise(<span class="function"><span class="keyword">function</span> (<span class="params">resolve,reject</span>) </span>&#123;</div><div class="line">            <span class="keyword">return</span> self.done(<span class="function"><span class="keyword">function</span> (<span class="params">result</span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span>(<span class="keyword">typeof</span> onFulfilled== <span class="string">'function'</span>)&#123;</div><div class="line">                    <span class="keyword">try</span>&#123;</div><div class="line">                        <span class="keyword">return</span> resolve(onFulfilled(result));</div><div class="line">                    &#125;<span class="keyword">catch</span>(e)&#123;</div><div class="line">                        <span class="keyword">return</span> reject(e);</div><div class="line">                    &#125;</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    <span class="keyword">return</span> resolve(result);</div><div class="line">                &#125;</div><div class="line">            &#125;,<span class="function"><span class="keyword">function</span> (<span class="params">error</span>) </span>&#123;</div><div class="line">                <span class="keyword">if</span>(<span class="keyword">typeof</span> onRejected== <span class="string">'function'</span>)&#123;</div><div class="line">                    <span class="keyword">try</span>&#123;</div><div class="line">                        <span class="keyword">return</span> reject(onRejected(error));</div><div class="line">                    &#125;<span class="keyword">catch</span>(e)&#123;</div><div class="line">                        <span class="keyword">return</span> reject(e);</div><div class="line">                    &#125;</div><div class="line">                &#125;<span class="keyword">else</span>&#123;</div><div class="line">                    <span class="keyword">return</span> reject(error);</div><div class="line">                &#125;</div><div class="line">            &#125;);</div><div class="line">        &#125;);</div><div class="line">    &#125;;</div><div class="line">    <span class="comment">//执行构造函数</span></div><div class="line">    doResolve(fn,resolve,reject);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//Promise调用</span></div><div class="line"><span class="keyword">var</span> ss=<span class="keyword">new</span> MyPromise(<span class="function"><span class="keyword">function</span> (<span class="params">resolve,reject</span>) </span>&#123;</div><div class="line">    setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">        resolve(<span class="string">'成功'</span>);</div><div class="line">    &#125;,<span class="number">2000</span>);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">ss.then(<span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(val);</div><div class="line">&#125;,<span class="function"><span class="keyword">function</span> (<span class="params">val</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(val);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<h2 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h2><p><a href="https://www.promisejs.org/implementing/" target="_blank" rel="external">Implementing promise</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="external">Promise MDN</a></p>
 
       
 
       
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-bug集锦" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/01/bug集锦/">bug集锦</a>
-    </h1>
-  
-
-        <a href="/2017/06/01/bug集锦/" class="archive-article-date">
-  	<time datetime="2017-06-01T13:53:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>都是自己遇到的坑，记录总结下。每个坑都是一次血泪史，不过爬坑的过程也是收获最大的时候。</p>
-        
-          <a class="article-more-a" href="/2017/06/01/bug集锦/#more">展开全文 >></a>
-        
-      
-
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>能帮到你，我很开心<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="http://oiy2rfrc6.bkt.clouddn.com/wechatsang.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -266,458 +237,99 @@
       
 
       
-      <div class="clearfix"></div>
-    </div>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
   </div>
-</article>
+</div>
 
-
-
-
-
-
-
-
-  
-    <article id="post-用户体系" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/14/用户体系/">用户体系</a>
-    </h1>
-  
-
-        <a href="/2017/05/14/用户体系/" class="archive-article-date">
-  	<time datetime="2017-05-14T02:48:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-14</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>用户体系在电商中必不可少。为了更好的维系用户，方便系统服务开发，都会设计用户体系。下面主要是结合我们自己公司的用户体系，记录下自己对用户体系的一些理解。</p>
-        
-          <a class="article-more-a" href="/2017/05/14/用户体系/#more">展开全文 >></a>
-        
-      
-
-      
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/06/03/Promise原理实现/" alt="微信分享二维码">
     </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
+</div>
 
-      
-
-      
-
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
 
-
-
-
-
-
-
-
   
-    <article id="post-官网首页要点及技术总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/21/官网首页要点及技术总结/">官网首页要点及技术总结</a>
-    </h1>
-  
-
-        <a href="/2017/04/21/官网首页要点及技术总结/" class="archive-article-date">
-  	<time datetime="2017-04-21T14:19:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-21</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在负责小天鹅官方商城的首页开发，目前已基本完成。这里，把官网首页开发的要点罗列、梳理一下，也对用到的技术方案做个整理、对比。罗列顺序不分先后，想到什么就写了什么。</p>
-        
-          <a class="article-more-a" href="/2017/04/21/官网首页要点及技术总结/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-我希望这是我写过的最差的代码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/07/我希望这是我写过的最差的代码/">我希望这是我写过的最差的代码</a>
-    </h1>
-  
-
-        <a href="/2017/04/07/我希望这是我写过的最差的代码/" class="archive-article-date">
-  	<time datetime="2017-04-07T12:06:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-07</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前端时间写了个自己觉得很差的代码，当然写之前我是没想到我会写的那么烂，但是写着写着，就觉得要歪楼了，写到最后，就真的觉得这代码只有我自己能看的懂～～忧伤~~这里记录总结一下</p>
-        
-          <a class="article-more-a" href="/2017/04/07/我希望这是我写过的最差的代码/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-project-copy——一个node模块的开发及发布" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/15/project-copy——一个node模块的开发及发布/">project-copy——一个node模块的开发及发布</a>
-    </h1>
-  
-
-        <a href="/2017/03/15/project-copy——一个node模块的开发及发布/" class="archive-article-date">
-  	<time datetime="2017-03-15T13:52:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-15</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>webpack,gulp,mvvm的开发模式，使得大家的项目结构从原本的html、css、js这种分资源存放的方式，变成了以项目为单元的结构。很多时候，项目之间又是相似的，所以，开始一个新项目时，大家应该都是copy一个类似的项目，然后再做重命名的修改吧？反正我是的。为了让这个copy的过程更优雅，就自己写了个简单的copy命令，喜欢优(zhuang)雅(bi)的朋友可以<code>npm install -g project-copy</code>试一下。</p>
-<h3 id="项目作用"><a href="#项目作用" class="headerlink" title="项目作用"></a>项目作用</h3><p>通过copy你的旧项目，快速而优雅的创建一个新项目。可支持copy目录或文件。</p>
-        
-          <a class="article-more-a" href="/2017/03/15/project-copy——一个node模块的开发及发布/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-javascript性能优化技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/07/javascript性能优化技巧/">javascript性能优化技巧</a>
-    </h1>
-  
-
-        <a href="/2017/02/07/javascript性能优化技巧/" class="archive-article-date">
-  	<time datetime="2017-02-07T05:38:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-07</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>春节在家，把《高性能的JavaScript》刷了一遍，受益匪浅。本着每看完一本书都要做读书笔记的习惯，将书中的知识点总结一下。</p>
-<blockquote>
-<p>由于不同浏览器使用的JavaScript引擎不同，因此对JavaScript的优化也不尽相同。也因此，有些方法在IE上可能性能相差很大，但在chrome上相差无几，也甚至某些方法在IE上最快，但在chrome上却并不是最优的方案，所以，对性能有极致要求的应用，应考虑你的产品使用者最常用的浏览器。当然，下面提到的优化方法都是通用法则或者对大多数浏览器都友好的方法。</p>
-</blockquote>
-<h1 id="【JavaScript加载和执行】"><a href="#【JavaScript加载和执行】" class="headerlink" title="【JavaScript加载和执行】"></a>【JavaScript加载和执行】</h1><p>JavaScript的下载和执行会阻塞用户界面的绘制和其他资源的下载</p>
-        
-          <a class="article-more-a" href="/2017/02/07/javascript性能优化技巧/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-javascript编程小技巧" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/01/13/javascript编程小技巧/">javascript编程小技巧</a>
-    </h1>
-  
-
-        <a href="/2017/01/13/javascript编程小技巧/" class="archive-article-date">
-  	<time datetime="2017-01-13T03:47:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-01-13</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>其实主要是性能小技巧。</p>
-<h2 id="循环优化"><a href="#循环优化" class="headerlink" title="循环优化"></a>循环优化</h2><p>循环体是执行最多的，所以要确保其被最大限度的优化.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// 提前计算好终止条件，存到局部变量中</span></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>, j = <span class="built_in">document</span>.getElementsByTagName(<span class="string">'a'</span>).length; i&lt;l; i++)&#123;</div><div class="line">    <span class="comment">// maybe faster</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">//推荐 while循环的效率要优于for(;;)</span></div><div class="line"><span class="keyword">var</span> i=<span class="built_in">document</span>.getElementsByTagName(<span class="string">'a'</span>).length;</div><div class="line"><span class="keyword">while</span>(i--)&#123;</div><div class="line">   </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// 据说是最快的  后测试循环</span></div><div class="line"><span class="keyword">do</span>&#123;</div><div class="line">   <span class="comment">// maybe fastest</span></div><div class="line">&#125;<span class="keyword">while</span>(i--)</div></pre></td></tr></table></figure>
-        
-          <a class="article-more-a" href="/2017/01/13/javascript编程小技巧/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-hexo-github入门教程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/29/hexo-github入门教程/">hexo+github入门教程</a>
-    </h1>
-  
-
-        <a href="/2016/12/29/hexo-github入门教程/" class="archive-article-date">
-  	<time datetime="2016-12-29T03:00:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-29</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文是以Mac为例。入门级教程，适合小白～～</p>
-<h2 id="安装前准备"><a href="#安装前准备" class="headerlink" title="安装前准备"></a>安装前准备</h2><p>1.node.js安装</p>
-<p>2.git安装 （因为我们最终要把代码提交到github上）</p>
-<p>3.一个github账号</p>
-<p>4.一个与GitHub账号同名的GitHub仓库：xxx.github.io  xxx是GitHub账号名</p>
-        
-          <a class="article-more-a" href="/2016/12/29/hexo-github入门教程/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
+<nav id="article-nav">
   
   
+    <a href="/2017/06/01/bug集锦/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">bug集锦</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="2017/06/03/Promise原理实现/" data-title="Promise原理实现" data-url="http://yoursite.com/2017/06/03/Promise原理实现/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"sherrying"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
 
 
           </div>
@@ -753,8 +365,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
