@@ -6,12 +6,12 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>sherry的小窝</title>
+  <title>Archives: 2017/9 | sherry的小窝</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="有点爱折腾的姑娘">
 <meta property="og:type" content="website">
 <meta property="og:title" content="sherry的小窝">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/archives/2017/09/index.html">
 <meta property="og:site_name" content="sherry的小窝">
 <meta property="og:description" content="有点爱折腾的姑娘">
 <meta name="twitter:card" content="summary">
@@ -156,75 +156,34 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-使用自定义-css-元素构建-Skeleton-Screens" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/10/使用自定义-css-元素构建-Skeleton-Screens/">【译】使用自定义 css 元素构建 Skeleton Screens</a>
-    </h1>
-  
-
-        <a href="/2017/09/10/使用自定义-css-元素构建-Skeleton-Screens/" class="archive-article-date">
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2017" class="archive-year">2017</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2017/09/10/使用自定义-css-元素构建-Skeleton-Screens/" class="archive-article-date">
   	<time datetime="2017-09-10T15:00:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-10</time>
 </a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>原文阅读：<a href="https://css-tricks.com/building-skeleton-screens-css-custom-properties/?utm_source=CSS-Weekly&amp;utm_campaign=Issue-281&amp;utm_medium=web" target="_blank" rel="external">https://css-tricks.com/building-skeleton-screens-css-custom-properties/?utm_source=CSS-Weekly&amp;utm_campaign=Issue-281&amp;utm_medium=web</a></p>
-</blockquote>
-<p>在web中，设计加载态经常被忽略或者事后才考虑。web性能不仅是开发人员的职责，在慢速网络上给用户创造良好的体验也是一个设计挑战。</p>
-<p>开发人员需要注意压缩、缓存，而设计人员就需要考虑系统加载过程中或者离线时的UI表现和行为。</p>
-<h2 id="速度错觉"><a href="#速度错觉" class="headerlink" title="速度错觉"></a>速度错觉</h2><p>随着我们对移动体验的期望发生变化，我们对性能的理解也随之改变。人们希望，无论他们的网络覆盖如何，web应用都能像原生apps一样响应快速。 </p>
-<p>感知性能是用来衡量一个东西让用户<strong>感觉</strong>有多快。一个观念是：如果用户能知道系统正在发生什么，且能提前预测内容，那么用户就会更有耐心，且会觉得这个系统较快。合理利用用户期望，并告知用户很重要。</p>
-<p>对一个web应用而言，这个概念也许包含文本、图片或其他元素构成的轮廓展示——也就是<strong>skeleton screens</strong>。你可以很轻易的找到它，像Facebook, Google, Slack等公司都在使用。</p>
-<p><img src="http://km.midea.com/uploads/imgs/e7edc6f74c59.jpg" alt="alt"><br>​                                Holy moly to you too, Slack.</p>
-<p><img src="http://km.midea.com/uploads/imgs/1b5439e97877.png" alt="alt"><br>​                                        Facebook’s Skeleton</p>
-<h2 id="举个栗子"><a href="#举个栗子" class="headerlink" title="举个栗子"></a>举个栗子</h2><p>假设你正在构建一个web应用。它是一个旅游攻略类的应用，用户可以分享旅行，推荐地方等，所以你的主要页面内容可能会像下面这样：</p>
-<p><img src="http://km.midea.com/uploads/imgs/c6a4451680c8.png" alt="alt"></p>
-<p>你可以把它简化为基本的视觉形状，即UI组件的轮廓。<br><img src="http://km.midea.com/uploads/imgs/5ed47a625ce1.png" alt="alt"></p>
-<p>无论人们什么时候从服务器请求新内容，你都可以立刻开始显示页面轮廓，而数据在后台加载。一旦内容准备好了，用实际的内容替换占位轮廓即可。这过程可以用原生的JavaScript或者现成的库如：React实现。</p>
-<p>你可以用一张图片来显示这个页面轮廓，但是这会引入额外的请求和数据开销。我们已经在加载内容了，却还要去等待另一张图片先出现，这并不是一个好方法。而且，它并不是响应式的，如果我们决定调整某些内容的样式，我们就必须把改动同步到skeleton image，这样两者才能匹配上。oh,好无聊~~</p>
-<p>一个更好的解决方法是只用CSS实现整个页面轮廓。没有额外的请求，最小的开销，甚至不需要任何额外的标记。而且，我们可以用一种使后期改变设计更容易的方式来构建它。</p>
-<h2 id="用CSS绘制页面轮廓"><a href="#用CSS绘制页面轮廓" class="headerlink" title="用CSS绘制页面轮廓"></a>用CSS绘制页面轮廓</h2><p>首先，我们需要绘制基本形状来组成页面轮廓。我们可以通过给<code>background-image</code>属性添加不同的<a href="https://css-tricks.com/css3-gradients/" target="_blank" rel="external">渐变</a>来实现。线性渐变（linear gradients ）默认从上到下，通过不同的颜色结束过渡效果。如果我们只设定一种结束颜色，其余部分设成透明（transparent）,我们就可以绘制形状了。</p>
-<p>请记住：多个background-images会相互叠加，所以顺序很重要。后定义的在最下面，先定义的在最上面。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">.skeleton &#123;</div><div class="line">  background-repeat: no-repeat;</div><div class="line">  background-image: </div><div class="line">    /* layer 2: avatar */</div><div class="line">    /* white circle with 16px radius */</div><div class="line">    radial-gradient(circle 16px, white 99%, transparent 0),</div><div class="line">    /* layer 1: title */</div><div class="line">    /* white rectangle with 40px height */</div><div class="line">    linear-gradient(white 40px, transparent 0),</div><div class="line">    /* layer 0: card bg */</div><div class="line">    /* gray rectangle that covers whole element */</div><div class="line">    linear-gradient(gray 100%, transparent 0);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这些形状延伸到了整个空间，就像普通的块状（block）元素。如果我们想控制它们的大小，就必须定义精确的尺寸。可以在<code>background-size</code>中设置每一层的宽高，但要和<code>background-image</code>中的顺序保持一致。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.skeleton &#123;</div><div class="line">  background-size:</div><div class="line">    32px 32px,  /* avatar */</div><div class="line">    200px 40px, /* title */</div><div class="line">    100% 100%;  /* card bg */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>最后一步是设置元素的位置background-position。表现和position:absolute一样，属性值分别相当于left，top。例如像真实的页面内容那样，我们给头像和标题模拟24px的padding值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.skeleton &#123;</div><div class="line">  background-position:</div><div class="line">    24px 24px,  /* avatar */</div><div class="line">    24px 200px, /* title */</div><div class="line">    0 0;        /* card bg */</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h2 id="使用自定义属性实现（Break-it-up-with-Custom-Properties）"><a href="#使用自定义属性实现（Break-it-up-with-Custom-Properties）" class="headerlink" title="使用自定义属性实现（Break it up with Custom Properties）"></a>使用自定义属性实现（Break it up with Custom Properties）</h2><p>上面的例子在简单的页面中很好用，但是如果页面复杂一些，CSS很快就会变得很混乱，难以阅读。如果其他开发者接手代码，他们会完全不知道那些神奇的数据从哪来的，代码也很难维护下去。</p>
-<p>值得庆幸的是，现在我们可以使用<a href="https://www.smashingmagazine.com/2017/04/start-using-css-custom-properties/" target="_blank" rel="external">自定义的CSS属性</a>以一种更简洁、对开发者更友好，甚至将不同值之间的关系都考虑在内的方式去写页面轮廓。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">.skeleton &#123;</div><div class="line">  /*</div><div class="line">    define as separate properties</div><div class="line">  */</div><div class="line">  --card-height: 340px;</div><div class="line">  --card-padding:24px;</div><div class="line">  --card-skeleton: linear-gradient(gray var(--card-height), transparent 0);</div><div class="line"></div><div class="line">  --title-height: 32px;</div><div class="line">  --title-width: 200px;</div><div class="line">  --title-position: var(--card-padding) 180px;</div><div class="line">  --title-skeleton: linear-gradient(white var(--title-height), transparent 0);</div><div class="line"></div><div class="line">  --avatar-size: 32px;</div><div class="line">  --avatar-position: var(--card-padding) var(--card-padding);</div><div class="line">  --avatar-skeleton: radial-gradient(</div><div class="line">    circle calc(var(--avatar-size) / 2), </div><div class="line">    white 99%, </div><div class="line">    transparent 0</div><div class="line">  );</div><div class="line"></div><div class="line">  /* </div><div class="line">    now we can break the background up </div><div class="line">    into individual shapes </div><div class="line">  */</div><div class="line">  background-image: </div><div class="line">    var(--avatar-skeleton),</div><div class="line">    var(--title-skeleton),</div><div class="line">    var(--card-skeleton);</div><div class="line"></div><div class="line">  background-size:</div><div class="line">    var(--avatar-size),</div><div class="line">    var(--title-width) var(--title-height),</div><div class="line">    100% 100%;</div><div class="line"></div><div class="line">  background-position:</div><div class="line">    var(--avatar-position),</div><div class="line">    var(--title-position),</div><div class="line">    0 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>这样不仅易于阅读，还更有利于后期样式修改。而且，我们可以用变量（像：<code>--avatar-size</code> <code>--card-padding</code> 等）去定义真正的页面样式，这样，轮廓和真正页面样式便能一直同步。</p>
-<p>现在添加媒体查询以在不同的断点调整skeleton的某部分也很简单：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@media screen and (min-width: 47em) &#123;</div><div class="line">  :root &#123;</div><div class="line">    --card-padding: 32px;</div><div class="line">    --card-height: 360px;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>注意：浏览器对自定义属性的兼容性虽不足100%，但也不错。基本所有现代浏览器都支持，IE/Edge部分支持。对于上文的例子，通过sass变量添加备用属性即可。</p>
-</blockquote>
-<h2 id="添加动画-Add-Animation"><a href="#添加动画-Add-Animation" class="headerlink" title="添加动画(Add Animation)"></a>添加动画(Add Animation)</h2><p>进一步优化，我们给页面轮廓添加动画，让它更像一个加载进度指示器。我们需要做的只是在最上层添加一个新的渐变，然后用<code>@keyframes</code>将它的position动起来。</p>
-<p>下面是一个完整的页面轮廓的例子：</p>
-<h4 id="live-demo"><a href="#live-demo" class="headerlink" title="live demo"></a><a href="https://codepen.io/mxbck/embed/EvmLVp?height=450&amp;theme-id=1&amp;slug-hash=EvmLVp&amp;default-tab=css%2Cresult&amp;user=mxbck&amp;embed-version=2&amp;pen-title=Skeleton%20Loading%20Card" target="_blank" rel="external">live demo</a></h4><blockquote>
-<p>说明：可以使用空选择器（:empty）和伪元素绘制页面轮廓，因为它只适应于空元素，一旦页面真正内容填充完成，轮廓就会自动消失。</p>
-</blockquote>
-<h2 id="更多性能相关设计"><a href="#更多性能相关设计" class="headerlink" title="更多性能相关设计"></a>更多性能相关设计</h2><p>更多感知性能相关的设计，请查看这些链接：</p>
-<p>Designer VS. Developer #8: <a href="https://www.youtube.com/watch?v=551nfxay-M4" target="_blank" rel="external">Designing for Great Performance</a></p>
-<p>Vince Speelman: <a href="https://medium.com/swlh/the-nine-states-of-design-5bfe9b3d6d85" target="_blank" rel="external">The Nine States of Design</a></p>
-<p>Harry Roberts: <a href="https://csswizardry.com/2016/10/improving-perceived-performance-with-multiple-background-images/" target="_blank" rel="external">Improving Perceived Performance with Multiple Background Images</a></p>
-<p>Sitepoint: <a href="https://www.sitepoint.com/a-designers-guide-to-fast-websites-and-perceived-performance/" target="_blank" rel="external">A Designer’s Guide to Perceived Performance</a></p>
-<h2 id="译者注"><a href="#译者注" class="headerlink" title="译者注"></a>译者注</h2><p>查了下国内在用的网站，领英，<a href="http://www.jianshu.com/" target="_blank" rel="external">简书首页</a>有采用这个方案，简书实现方案是：写2套样式，通过js判断loading状态，动态切换样式class。可能考虑到兼容性的问题，简书用的是简单的css样式加@keyframes动画，并没有用这种自定义的css属性。</p>
-<p>国外有Facebook iOS版、Medium、WordPress App、Slack等产品采用。</p>
-<p>PS：把网速调慢之后看的更清楚</p>
-<h4 id="适用于布局排版固定的内容区域"><a href="#适用于布局排版固定的内容区域" class="headerlink" title="适用于布局排版固定的内容区域"></a>适用于布局排版固定的内容区域</h4><p>Skeleton Screen所展现的是内容的大概轮廓，如果内容布局和排版不是固定的，那么轮廓和内容布局的巨大差异，不仅不能给用户顺畅和期待感，反倒会造成落差。因此Skeleton Screen适用于布局排版固定的内容区域，例如列表、文章、个人信息。注意：如果内容区域有空页面的情况，也不建议使用Skeleton Screen。</p>
-<h4 id="建议配合其他加载技术一起使用"><a href="#建议配合其他加载技术一起使用" class="headerlink" title="建议配合其他加载技术一起使用"></a>建议配合其他加载技术一起使用</h4><p>用户的网络环境是复杂的，如果加载持续时间很久，单凭Skeleton Screen起不到流畅过渡的效果，建议配合懒加载（先文字后图片）、逐条加载、预加载等技术，以达到更出色的体验。</p>
-<p>Ps:第一次尝试翻译外文，若有不对的地方，欢迎指出~~</p>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2017/09/10/使用自定义-css-元素构建-Skeleton-Screens/">【译】使用自定义 css 元素构建 Skeleton Screens</a>
+    </h1>
+  
 
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags"></i>
 		<ul class="article-tag-list">
@@ -239,590 +198,19 @@
 		</span>
 	</div>
 
-      
+          
 
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-
-
-
-
-
-
-
   
-    <article id="post-小程序踩坑集锦" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/10/小程序踩坑集锦/">小程序踩坑集锦</a>
-    </h1>
-  
-
-        <a href="/2017/08/10/小程序踩坑集锦/" class="archive-article-date">
-  	<time datetime="2017-08-10T14:43:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-08-10</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近做了几个小程序，开发过程中遇到了一些典型或非典型的问题，记录下来给大家个参考。</p>
-<p>最近做了个门店赠品申请页面，开发过程中遇到了一些典型或非典型的问题，记录下来给大家个参考。</p>
-<h4 id="1-上传多张图片"><a href="#1-上传多张图片" class="headerlink" title="1.上传多张图片"></a>1.上传多张图片</h4><p>wx.uploadFile一次只能上传一张图，所以需重复调用wx.uploadFile实现多张上传。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div></pre></td><td class="code"><pre><div class="line"> //校验通过，上传发票图片</div><div class="line"> uploadImg:function()&#123;  </div><div class="line">      var that=this;</div><div class="line">var imgTempArr=that.data.imgTempArr;</div><div class="line">wx.uploadFile(&#123;</div><div class="line">     url: &apos;xxxxx&apos;,</div><div class="line">     filePath: imgTempArr[imgIndex],</div><div class="line">     name: &apos;file&apos;,</div><div class="line">     formData: &#123;&#125;,</div><div class="line">     success:function(res)&#123;</div><div class="line">	  //上传成功，取得真正的图片路径，调go CGI接口，提交申请</div><div class="line">	  console.log(&apos;upload success:&apos;,res);</div><div class="line">	  let data = JSON.parse(res.data.trim());</div><div class="line">	  if(data.errcode==0)&#123;</div><div class="line">	  	imgIndex++;</div><div class="line">	  	imgRealArrGlobal.push(data.imgUrl);</div><div class="line"></div><div class="line">	  &#125;</div><div class="line">     &#125;,</div><div class="line">     fail:function(res)&#123;</div><div class="line">	  console.log(&apos;upload fail:&apos;,res);</div><div class="line">     &#125;,</div><div class="line">     complete:function(res)&#123;</div><div class="line">	if(imgIndex==len)&#123; //图片上传完，提交数据</div><div class="line">		that.setData(&#123;</div><div class="line">			imgRealArr:imgRealArrGlobal</div><div class="line">	  	&#125;);</div><div class="line"></div><div class="line">		//上传完，直接将与图片相关的变量初始化，因为提交失败后要重传图片</div><div class="line">       	imgIndex=0;  </div><div class="line">	  	imgRealArrGlobal=[];</div><div class="line"></div><div class="line">		that.submitData(); //提交数据</div><div class="line">	&#125;else&#123;  //没上传完</div><div class="line">	  	let data = JSON.parse(res.data.trim());</div><div class="line">		if(data.errcode==0)&#123;  //如果上传成功，则递归调用此函数，继续上传</div><div class="line">			that.uploadImg();</div><div class="line">		&#125;else&#123;   //上传失败，则终止，防止死循环</div><div class="line">			 console.log(&apos;上传失败:&apos;,res);</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">	&#125;</div><div class="line">     &#125;</div><div class="line">   &#125;);</div><div class="line"></div><div class="line">  &#125;,</div></pre></td></tr></table></figure></p>
-<p>这里微信有个坑：真机中，上传的图片在服务器端通过$_FILES[‘file’][‘name’]取到的文件名竟然都一样，都是“wx_file.jpg”，在模拟器中是不一样的。可以用$_FILES[‘file’][‘tmp_name’]或者是自己随机生成的文件名来命名文件。</p>
-<h4 id="2-forEach-函数"><a href="#2-forEach-函数" class="headerlink" title="2. forEach()函数"></a>2. forEach()函数</h4><p>Android机，return不能跳出当前循环，iOS可以。解决方法：用for循环代替。</p>
-<h4 id="3-wx-showModal-Android锁屏后导致showModal的回调无法执行"><a href="#3-wx-showModal-Android锁屏后导致showModal的回调无法执行" class="headerlink" title="3. wx.showModal() Android锁屏后导致showModal的回调无法执行"></a>3. wx.showModal() Android锁屏后导致showModal的回调无法执行</h4><p>wx.showModal()，弹窗出现后，锁屏，再开屏，Android机弹窗会自动消失，导致showModal里的success，fail,complete回调均不执行。解决方法：showCancel: false时，在wx.showModal()之后写代码也OK。</p>
-<h4 id="4-生成小程序二维码，扫码进入指定页面：只能扫码进已发布的页面。"><a href="#4-生成小程序二维码，扫码进入指定页面：只能扫码进已发布的页面。" class="headerlink" title="4.生成小程序二维码，扫码进入指定页面：只能扫码进已发布的页面。"></a>4.生成小程序二维码，扫码进入指定页面：只能扫码进已发布的页面。</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//扫二维码后进入到path指定的页面，path=/page/gift/index/index?id=S00012127</div><div class="line">onLoad:function(option)&#123;</div><div class="line">		console.log(&apos;code option:&apos;,option);</div><div class="line">		let that=this;</div><div class="line">		let id;</div><div class="line">		if(option.id)&#123;  //通过带参二维码扫码进来,id是你的二维码参数</div><div class="line">			id=option.id;</div><div class="line">		&#125;</div><div class="line">		......</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="5-textarea在ios真机上多出内边距"><a href="#5-textarea在ios真机上多出内边距" class="headerlink" title="5.textarea在ios真机上多出内边距"></a>5.textarea在ios真机上多出内边距</h4><p>由wx.getSystemInfo获取机型，分系统处理<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">wx.getSystemInfo(&#123;</div><div class="line">          success: function(res) &#123;</div><div class="line">          	console.log(&apos;getSystemInfo:&apos;,res);</div><div class="line">            if(res.system.indexOf(&apos;iOS&apos;)&gt;-1)&#123; //ios系统</div><div class="line">            	that.setData(&#123;</div><div class="line">					paddingTop:15,</div><div class="line">				&#125;);</div><div class="line">            &#125;else&#123;  //安卓</div><div class="line">            	that.setData(&#123;</div><div class="line">					paddingTop:30,</div><div class="line">				&#125;);</div><div class="line">            &#125;</div><div class="line">          &#125;</div><div class="line">        &#125;);</div></pre></td></tr></table></figure></p>
-<h4 id="6-小Tips"><a href="#6-小Tips" class="headerlink" title="6.小Tips"></a>6.小Tips</h4><p>h5的页面移植到小程序时，由于之前是640的设计稿，小程序中最好时750的设计稿，为了最快速度的移植，可写一个功能的转换函数，将640的尺寸按比例转成对应的750。</p>
-<p>还有很多样式上的问题，就不一一赘述了~~且码且珍惜！！！</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-小程序自动化运营实践" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/07/06/小程序自动化运营实践/">小程序自动化运营实践</a>
-    </h1>
-  
-
-        <a href="/2017/07/06/小程序自动化运营实践/" class="archive-article-date">
-  	<time datetime="2017-07-06T02:49:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-07-06</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="项目背景"><a href="#项目背景" class="headerlink" title="项目背景"></a>项目背景</h2><p><code>美的官方商城</code>小程序上线后，考虑到运营的需求，所以要有相应的工具辅助运营。基于之前PC、H5已有一套完整、成熟的运营工具，可一键发布到2大平台，所以，最好的方法就是在原有的工具上增加<code>发布到小程序平台</code>的功能。</p>
-        
-          <a class="article-more-a" href="/2017/07/06/小程序自动化运营实践/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-资源帖" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/21/资源帖/">资源帖</a>
-    </h1>
-  
-
-        <a href="/2017/06/21/资源帖/" class="archive-article-date">
-  	<time datetime="2017-06-21T14:38:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-21</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>好记性不如烂笔头，仅作个人收藏，用到什么就更新什么~~~</strong></p>
-<p>Mac软件破解版收录网站：爱情守望者  <a href="https://www.waitsun.com/">https://www.waitsun.com/</a></p>
-<p>mac zsh-xshell：<a href="http://www.jeffjade.com/2015/07/29/2015-07-29-mac-musthave-software/">http://www.jeffjade.com/2015/07/29/2015-07-29-mac-musthave-software/</a></p>
-        
-          <a class="article-more-a" href="/2017/06/21/资源帖/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">资源</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-云服务器搭建过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/21/云服务器搭建过程/">云服务器搭建过程</a>
-    </h1>
-  
-
-        <a href="/2017/06/21/云服务器搭建过程/" class="archive-article-date">
-  	<time datetime="2017-06-21T14:37:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-21</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>从我折腾完的感觉来看，非常值得折腾，以后还是要多折腾。</p>
-<p>感受：服务器与浏览器通信的整个过程更清晰了些；有了服务器+数据库，折腾自己的项目更方便了；</p>
-<h2 id="买"><a href="#买" class="headerlink" title="买"></a>买</h2><p>买服务器、域名。买完域名还要备案。如果目的是了解、学习搭建服务器端搭建过程，也可以先不买域名，用IP访问也是一样的。但如果你要用它做小程序的服务器的话，还是要备案且HTTPS的。</p>
-        
-          <a class="article-more-a" href="/2017/06/21/云服务器搭建过程/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-Promise原理实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/03/Promise原理实现/">Promise原理实现</a>
-    </h1>
-  
-
-        <a href="/2017/06/03/Promise原理实现/" class="archive-article-date">
-  	<time datetime="2017-06-03T14:09:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-03</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>知其然也要知其所以然。查了些资料，照着实现了下Promise的原理。</p>
-<h2 id="Promise简单总结"><a href="#Promise简单总结" class="headerlink" title="Promise简单总结"></a>Promise简单总结</h2><p><strong>Promise </strong>对象用于异步计算。一个 Promise 表示一个<strong>现在</strong>或<strong>将来</strong>可用<strong>，</strong>亦或<strong>永远不</strong>可用的值。</p>
-        
-          <a class="article-more-a" href="/2017/06/03/Promise原理实现/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-bug集锦" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/01/bug集锦/">bug集锦</a>
-    </h1>
-  
-
-        <a href="/2017/06/01/bug集锦/" class="archive-article-date">
-  	<time datetime="2017-06-01T13:53:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-06-01</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>都是自己遇到的坑，记录总结下。每个坑都是一次血泪史，不过爬坑的过程也是收获最大的时候。</p>
-        
-          <a class="article-more-a" href="/2017/06/01/bug集锦/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-用户体系" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/14/用户体系/">用户体系</a>
-    </h1>
-  
-
-        <a href="/2017/05/14/用户体系/" class="archive-article-date">
-  	<time datetime="2017-05-14T02:48:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-05-14</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>用户体系在电商中必不可少。为了更好的维系用户，方便系统服务开发，都会设计用户体系。下面主要是结合我们自己公司的用户体系，记录下自己对用户体系的一些理解。</p>
-        
-          <a class="article-more-a" href="/2017/05/14/用户体系/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-官网首页要点及技术总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/21/官网首页要点及技术总结/">官网首页要点及技术总结</a>
-    </h1>
-  
-
-        <a href="/2017/04/21/官网首页要点及技术总结/" class="archive-article-date">
-  	<time datetime="2017-04-21T14:19:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-21</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近在负责小天鹅官方商城的首页开发，目前已基本完成。这里，把官网首页开发的要点罗列、梳理一下，也对用到的技术方案做个整理、对比。罗列顺序不分先后，想到什么就写了什么。</p>
-        
-          <a class="article-more-a" href="/2017/04/21/官网首页要点及技术总结/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-我希望这是我写过的最差的代码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/07/我希望这是我写过的最差的代码/">我希望这是我写过的最差的代码</a>
-    </h1>
-  
-
-        <a href="/2017/04/07/我希望这是我写过的最差的代码/" class="archive-article-date">
-  	<time datetime="2017-04-07T12:06:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-07</time>
-</a>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前端时间写了个自己觉得很差的代码，当然写之前我是没想到我会写的那么烂，但是写着写着，就觉得要歪楼了，写到最后，就真的觉得这代码只有我自己能看的懂～～忧伤~~这里记录总结一下</p>
-        
-          <a class="article-more-a" href="/2017/04/07/我希望这是我写过的最差的代码/#more">展开全文 >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags"></i>
-		<ul class="article-tag-list">
-			 
-        <li class="article-tag-list-item">
-        	<a href="javascript:void(0)" class="article-tag-list-link color3">随笔</a>
-        </li>
-      
-		</ul>
-		<span id="busuanzi_container_page_pv" class="pv_single_css">
-		    本文总阅读量<span id="busuanzi_value_page_pv"></span>次
-		</span>
-	</div>
-
-      
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-  
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -858,9 +246,9 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
